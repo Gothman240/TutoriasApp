@@ -12,7 +12,7 @@ fun NavigationWrap(){
 
     NavHost(navController = navController, startDestination = Login){
         composable<Login>{
-            LoginScreen(navigateToSelectRole = { navController.navigate(SelectRoleScreen()) })
+//            LoginScreen(navigateToSelectRole = { navController.navigate(SelectRoleScreen()) })
         }
         composable<Home>{
 //            Home(navController)
