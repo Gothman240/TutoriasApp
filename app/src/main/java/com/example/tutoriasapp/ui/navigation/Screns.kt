@@ -1,4 +1,4 @@
-package com.example.tutoriasapp.ui.theme.components.navigation
+package com.example.tutoriasapp.ui.navigation
 
 import kotlinx.serialization.Serializable
 

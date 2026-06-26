@@ -1,9 +1,10 @@
-package com.example.tutoriasapp.ui.theme.components.navigation
+package com.example.tutoriasapp.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tutoriasapp.ui.screens.LoginScreen
 
 @Composable
 fun NavigationWrap(){
@@ -11,7 +12,7 @@ fun NavigationWrap(){
 
     NavHost(navController = navController, startDestination = Login){
         composable<Login>{
-//            Login(navController)
+            LoginScreen(navigateToSelectRole = { navController.navigate(SelectRoleScreen()) })
         }
         composable<Home>{
 //            Home(navController)
