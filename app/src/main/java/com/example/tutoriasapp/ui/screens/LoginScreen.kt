@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,6 +50,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.tutoriasapp.R
 import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
@@ -56,14 +58,11 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit) {
     val annotatedText = buildAnnotatedString {
-        // 1. Parte normal
         append("Al continuar, aceptas nuestros ")
-
-        // 2. Parte en Bold (y azul, como en tu foto de referencia)
         withStyle(
             style = SpanStyle(
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0C56D1) // Tu azul personalizado
+                color = Color(0xFF0C56D1)
             )
         ) {
             append("Términos de Servicio.")
@@ -72,7 +71,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.bg),
+            painter = painterResource(id = R.drawable.backgroundapp),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
@@ -112,7 +111,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 )
                 .clip(RoundedCornerShape(20.dp))
                 .background(
-                    color = Color(246, 246, 249).copy(alpha = .8f)
+                    color = Color(246, 246, 249).copy(alpha = .6f)
                 )
                 .border(
                     width = 1.dp,
@@ -143,8 +142,20 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(Modifier
-                    .size(56.dp)
-                    .background(color = Color.Blue))
+                    .size(76.dp)
+                    .background(Color(12,86,208), shape = RoundedCornerShape(24.dp)),
+                    contentAlignment = Alignment.Center
+                )
+                    {
+                        Icon(painterResource(R.drawable.study_fill),
+                            contentDescription = null,
+                            tint = Color(255,255,255),
+                            modifier = Modifier.fillMaxSize(fraction = 0.6f))
+                    }
+                Spacer(Modifier.height(8.dp))
+                Text("TutorMe", color = Color(12,86,208),
+                    fontWeight = FontWeight.SemiBold,
+                    style = MaterialTheme.typography.headlineSmall)
                 Spacer(modifier = Modifier.height(14.dp))
                 Text(
                     text = "Bienvenido de nuevo",
@@ -155,13 +166,15 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 Spacer(modifier = Modifier.height(26.dp))
                 Text(
                     modifier = Modifier.widthIn(max = 240.dp),
-                    text = "Conéctate con tu comunidad académica de forma segura.",
+                    text = "Aprende con tutores en línea estés donde estés.",
                     style = MaterialTheme.typography.bodyMedium,
+                    color = Color.DarkGray,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 Button(
                     modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(vertical = 16.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(255, 255, 255),
                         contentColor = Color.Black
@@ -176,8 +189,8 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                         painter = painterResource(R.drawable.google),
                         contentDescription = null
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Continuar con Google", fontWeight = FontWeight.Bold)
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Text("Continuar con Google", fontSize = 14.sp ,fontWeight = FontWeight.SemiBold)
                 }
                 HorizontalDivider(modifier = Modifier.padding(vertical = 32.dp))
                 Text(text = annotatedText, style = MaterialTheme.typography.bodyMedium,
