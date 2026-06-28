@@ -105,20 +105,20 @@ fun SelectRoleScreen() {
                 }
                 Box(
                     modifier = Modifier
-                        .padding(bottom = 20.dp, end = 24.dp) // Pequeño margen para que no toque los bordes rígidos
+                        .padding(bottom = 20.dp, end = 24.dp)
                         .size(32.dp)
                         .background(
-                            color = Color(0xFF0C56D1).copy(alpha = .1f), // Fondo azul muy suave
+                            color = Color(0xFF0C56D1).copy(alpha = .1f),
                             shape = CircleShape
                         )
-                        .align(Alignment.BottomEnd), // 👈 Se posiciona sola abajo a la derecha
+                        .align(Alignment.BottomEnd),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.round_chevron_right_24),
                         contentDescription = null,
                         modifier = Modifier.size(20.dp),
-                        tint = Color(0xFF0C56D1) // Tu azul
+                        tint = Color(0xFF0C56D1)
                     )
                 }
             }
