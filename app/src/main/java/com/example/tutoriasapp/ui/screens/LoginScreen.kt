@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,11 +17,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,10 +37,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -44,11 +55,33 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 
 @Composable
 fun LoginScreen(onLoginSuccess: () -> Unit) {
+    val annotatedText = buildAnnotatedString {
+        // 1. Parte normal
+        append("Al continuar, aceptas nuestros ")
+
+        // 2. Parte en Bold (y azul, como en tu foto de referencia)
+        withStyle(
+            style = SpanStyle(
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF0C56D1) // Tu azul personalizado
+            )
+        ) {
+            append("Términos de Servicio.")
+        }
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.bg),
             contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer(
+                    scaleX = 1.2f,
+                    scaleY = 1.2f,
+
+                    transformOrigin = TransformOrigin(0.5f, 0.5f)
+                ),
             contentScale = ContentScale.Crop
         )
 
@@ -59,7 +92,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                     Brush.verticalGradient(
                         colors = listOf(
                             Color.Black.copy(alpha = 0.1f),
-                            Color.Black.copy(alpha = 0.3f)
+                            Color.Black.copy(alpha = 0.1f)
                         )
                     )
                 )
@@ -79,7 +112,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 )
                 .clip(RoundedCornerShape(20.dp))
                 .background(
-                    color = Color.White.copy(alpha = .8f) // tinte translúcido
+                    color = Color(246, 246, 249).copy(alpha = .8f)
                 )
                 .border(
                     width = 1.dp,
@@ -127,15 +160,30 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(32.dp))
-                Button(modifier = Modifier.fillMaxWidth(), onClick = { onLoginSuccess() }) {
-                    Text("Continuar con Google")
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(255, 255, 255),
+                        contentColor = Color.Black
+                    ),
+                    border = BorderStroke(1.dp, Color(195,198,214)),
+                    onClick = { onLoginSuccess() },
+                    shape = RoundedCornerShape(12.dp),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 12.dp)
+                    ) {
+                    Image(
+                        modifier = Modifier.size(20.dp),
+                        painter = painterResource(R.drawable.google),
+                        contentDescription = null
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Continuar con Google", fontWeight = FontWeight.Bold)
                 }
                 HorizontalDivider(modifier = Modifier.padding(vertical = 32.dp))
-                Text(
-                    text = "Al continuar, aceptas nuestros Términos de Servicio.",
-                    style = MaterialTheme.typography.bodySmall,
-                    textAlign = TextAlign.Center
-                )
+                Text(text = annotatedText, style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth())
+
             }
         }
     }

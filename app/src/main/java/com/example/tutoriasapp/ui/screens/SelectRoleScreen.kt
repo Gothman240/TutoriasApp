@@ -57,10 +57,10 @@ fun SelectRoleScreen() {
             Box(modifier = Modifier.padding(horizontal = 24.dp)){
                 Text("Seleccione cómo desea utilizar Tutorias para personalizar su experiencia.",
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
-            Spacer(Modifier.weight(0.5f))
+            Spacer(Modifier.height(16.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -89,11 +89,11 @@ fun SelectRoleScreen() {
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text("Soy estudiante", style = MaterialTheme.typography.headlineSmall)
+                    Text("Soy estudiante", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.SemiBold)
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         "Necesito apoyo académico y tutorías para sobresalir en mis clases.",
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -110,7 +110,7 @@ fun SelectRoleScreen() {
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
-            Spacer(Modifier.weight(0.3f))
+            Spacer(Modifier.height(12.dp))
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -139,11 +139,11 @@ fun SelectRoleScreen() {
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text("Soy tutor", style = MaterialTheme.typography.headlineSmall)
+                    Text("Soy tutor", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.SemiBold)
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         "Quiero ayudar a otros, compartir conocimientos y ganar dinero mientras enseño.",
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -160,7 +160,6 @@ fun SelectRoleScreen() {
                     Spacer(modifier = Modifier.height(12.dp))
                 }
             }
-            Spacer(Modifier.weight(0.2f))
         }
     }
 }
