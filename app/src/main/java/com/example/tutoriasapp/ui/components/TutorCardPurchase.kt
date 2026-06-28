@@ -116,7 +116,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                     }
                 }
             }
-
+//sarasa
         }
     }
 
