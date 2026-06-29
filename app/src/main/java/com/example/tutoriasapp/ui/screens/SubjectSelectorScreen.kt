@@ -1,8 +1,11 @@
 package com.example.tutoriasapp.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,10 +23,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,11 +42,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tutoriasapp.R
-import com.example.tutoriasapp.ui.components.UniversityCard
+import com.example.tutoriasapp.ui.components.SubjectChip
+
+data class Subject(
+    val id: Int,
+    val name: String,
+    val isSelected: Boolean = false
+)
 
 @Composable
-fun SelectUniversity(){
+fun SubjectSelectorScreen(){
+    val initialSubjects = listOf(
+        Subject(1, "Álgebra", isSelected = true),
+        Subject(2, "Análisis Matemático"),
+        Subject(3, "Física I"),
+        Subject(4, "Química General"),
+        Subject(5, "Programación"),
+        Subject(6, "Sistemas de Representación"),
+        Subject(7, "Probabilidad y Estadística"),
+        Subject(8, "Análisis de Circuitos"),
+        Subject(9, "Introducción al Derecho"),
+        Subject(10, "Economía General")
+    )
+    var subjectsList by remember { mutableStateOf(initialSubjects) }
     var searchQuery by remember { mutableStateOf("") }
+    val isButtonEnabled = searchQuery.isNotEmpty() || subjectsList.any { it.isSelected }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -61,9 +84,9 @@ fun SelectUniversity(){
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 36.dp)) {
             Spacer(Modifier.height(46.dp))
-            Text("Cuentanos sobre tu universidad", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
+            Text("¿Con qué materias necesitas ayuda?", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
             Spacer(modifier = Modifier.height(16.dp))
-            Text("Esto nos ayuda a conectarte con tutores de tu misma institución.",
+            Text("Selecciona las asignaturas que más se te dificultan para sugerirte a los mejores tutores.",
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyMedium
             )
@@ -76,7 +99,7 @@ fun SelectUniversity(){
                     .padding(vertical = 18.dp),
                 placeholder = {
                     Text(
-                        text = "Buscar tu universidad...",
+                        text = "Buscar tu asignatura...",
                         color = Color.Gray,
                         style = MaterialTheme.typography.bodyMedium
                     )
@@ -92,20 +115,35 @@ fun SelectUniversity(){
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF0C56D1),
-                    unfocusedBorderColor = Color.LightGray,  
+                    unfocusedBorderColor = Color.LightGray,
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White
                 ),
             )
-            Spacer(Modifier.height(8.dp))
-            Text("Sugerido cerca de ti", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(imageVector = Icons.Default.AutoAwesome, contentDescription = null)
+                Spacer(Modifier.width(8.dp))
+                Text("Materias más buscadas", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+            }
             Spacer(Modifier.height(16.dp))
-            UniversityCard(name = "Universidad de Buenos Aires", location = "CABA, Buenos Aires") { }
-            UniversityCard(name = "Universidad Tecnológica Nacional (UTN)", location = "Avellaneda, Buenos Aires") { }
-            UniversityCard(name = "Universidad Nacional de Quilmes (UNQ)", location = "Quilmes, Buenos Aires") { }
-            UniversityCard(name = "Universidad Nacional de La Matanza", location = "San Justo, Buenos Aires") { }
-            UniversityCard(name = "Universidad Nacional de General San Martín (UNSAM)", location = "San Martín, Buenos Aires") { }
-
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                subjectsList.forEach { materia ->
+                    SubjectChip(
+                        name = materia.name,
+                        isSelected = materia.isSelected,
+                        onSelectionChanged = { selected ->
+                            // Actualizamos la lista estática en tiempo real al hacer clic
+                            subjectsList = subjectsList.map {
+                                if (it.id == materia.id) it.copy(isSelected = selected) else it
+                            }
+                        }
+                    )
+                }
+            }
         }
         Surface(
             modifier = Modifier
@@ -123,7 +161,7 @@ fun SelectUniversity(){
         ) {
             Button(
                 onClick = { /* Continuar flujo */ },
-                enabled = searchQuery.isNotEmpty(),
+                enabled = isButtonEnabled,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp, vertical = 18.dp),
@@ -141,10 +179,11 @@ fun SelectUniversity(){
             }
         }
     }
+
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun SelectUniversityPreview(){
-    SelectUniversity()
+fun SubjectSelectorScreenPreview(){
+    SubjectSelectorScreen()
 }
