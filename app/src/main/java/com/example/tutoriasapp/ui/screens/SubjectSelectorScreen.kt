@@ -99,7 +99,7 @@ fun SubjectSelectorScreen(){
                     .padding(vertical = 18.dp),
                 placeholder = {
                     Text(
-                        text = "Buscar tu universidad...",
+                        text = "Buscar tu asignatura...",
                         color = Color.Gray,
                         style = MaterialTheme.typography.bodyMedium
                     )

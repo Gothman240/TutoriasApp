@@ -38,7 +38,7 @@ fun SubjectChip(
                 Icon(
                     imageVector = Icons.Default.Done,
                     contentDescription = null,
-                    modifier = Modifier.size(16.dp)
+                    modifier = Modifier.size(14.dp)
                 )
             }
         } else null,
@@ -53,8 +53,8 @@ fun SubjectChip(
             selectedLeadingIconColor = Color.White
         ),
         border = BorderStroke(
-            width = 1.dp,
-            color = Color.LightGray.copy(alpha = 0.5f) // Un borde sutil para enmarcarlo
+            width = if (isSelected) 0.dp else 2.dp, // ⚠️ Cambia el grosor dinámicamente
+            color = if (isSelected) Color.Transparent else Color.LightGray.copy(alpha = 0.5f)
         )
     )
 }

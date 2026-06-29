@@ -132,13 +132,13 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                     ),
                     shape = RoundedCornerShape(20.dp)
                 )
-                .padding(20.dp)
+                .padding(vertical = 20.dp)
         ) {
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(42.dp),
+                    .padding(horizontal = 42.dp, vertical = 32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(Modifier
@@ -155,15 +155,15 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                 Spacer(Modifier.height(8.dp))
                 Text("TutorMe", color = Color(12,86,208),
                     fontWeight = FontWeight.SemiBold,
-                    style = MaterialTheme.typography.headlineSmall)
-                Spacer(modifier = Modifier.height(14.dp))
+                    style = MaterialTheme.typography.headlineMedium)
+                Spacer(modifier = Modifier.height(48.dp))
                 Text(
                     text = "Bienvenido de nuevo",
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(26.dp))
+                Spacer(modifier = Modifier.height(18.dp))
                 Text(
                     modifier = Modifier.widthIn(max = 240.dp),
                     text = "Aprende con tutores en línea estés donde estés.",
@@ -171,7 +171,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                     color = Color.DarkGray,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(42.dp))
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(vertical = 16.dp),
@@ -192,7 +192,7 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                     Spacer(modifier = Modifier.width(12.dp))
                     Text("Continuar con Google", fontSize = 14.sp ,fontWeight = FontWeight.SemiBold)
                 }
-                HorizontalDivider(modifier = Modifier.padding(vertical = 32.dp))
+                HorizontalDivider(modifier = Modifier.padding(vertical = 44.dp))
                 Text(text = annotatedText, style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.fillMaxWidth())

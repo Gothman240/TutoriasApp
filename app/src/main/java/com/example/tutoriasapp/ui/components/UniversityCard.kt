@@ -35,7 +35,7 @@ fun UniversityCard(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 5.dp)
+            .padding(vertical = 8.dp)
             .shadow(
                 elevation = 2.dp,
                 shape = RoundedCornerShape(12.dp),
