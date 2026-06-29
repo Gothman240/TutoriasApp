@@ -29,7 +29,7 @@ import com.example.tutoriasapp.R
 fun TutorCardPurchase(modifier: Modifier = Modifier) {
     Card(
         modifier = Modifier
-            .padding(20.dp)
+            .padding(28.dp)
             .fillMaxWidth()
     ) {
         Row(
@@ -37,7 +37,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                 .padding(10.dp)
         ) {
             Column(
-                modifier = Modifier.padding(9.dp),
+                modifier = Modifier.padding(8.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
@@ -77,46 +77,49 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
             }
 
         }
-        HorizontalDivider(thickness = 2.dp)
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-            colors = CardDefaults.outlinedCardColors()
+        HorizontalDivider(modifier = Modifier.padding(10.dp) ,thickness = 2.dp)
+        Row(Modifier
+            .padding(6.dp)
         ) {
-            Row(
+            Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                colors = CardDefaults.outlinedCardColors()
             ) {
-                Column(
-                    modifier = Modifier.weight(1f)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "FECHA",
-                        color = Color.Gray
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "📅 15 de Octubre")
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = "FECHA",
+                            color = Color.Gray
+                        )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "📅 15 de Octubre")
+                        }
                     }
-                }
-                Column(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(
-                        text = "HORARIO",
-                        color = Color.Gray
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(text = "🕒 16:00 - 17:30")
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = "HORARIO",
+                            color = Color.Gray
+                        )
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "🕒 16:00 - 17:30")
+                        }
                     }
                 }
             }
-//sarasa
         }
     }
 
