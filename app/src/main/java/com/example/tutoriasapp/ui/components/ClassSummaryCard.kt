@@ -26,7 +26,7 @@ fun ClassSummaryCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            /*.padding(16.dp)*/,
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFFDDE1FF) // El tono lila/azul suave de "Tu Sesión"
         ),
