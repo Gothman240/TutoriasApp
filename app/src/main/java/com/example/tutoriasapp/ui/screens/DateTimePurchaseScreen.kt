@@ -1,6 +1,7 @@
 package com.example.tutoriasapp.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,14 +10,19 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.tutoriasapp.ui.components.ClassSummaryCard
 import com.example.tutoriasapp.ui.components.TutorCardSelected
+import java.util.Calendar
 
 // --- FUNCIÓN PREVIEW PARA VERLA EN ANDROID STUDIO ---
 @Preview(showSystemUi = true, showBackground = true)
@@ -29,8 +35,35 @@ fun DateTimePurchaseScreenPreview() {
 @Composable
 fun DateTimePurchaseScreen() {
     // Estado nativo del calendario de Material 3
-    val datePickerState = rememberDatePickerState()
+    val customSelectableDates = remember {
+        object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                // Obtener la fecha actual a la medianoche (en milisegundos)
+                val todayMillis = Calendar.getInstance().apply {
+                    set(Calendar.HOUR_OF_DAY, 0)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                }.timeInMillis
 
+                // Regla 1: Bloquear días pasados
+                if (utcTimeMillis < todayMillis) return false
+
+                // Regla 2: Bloquear fines de semana (Opcional, bórralo si no lo necesitas)
+                val calendar = Calendar.getInstance().apply {
+                    timeInMillis = utcTimeMillis
+                }
+                val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+
+                // Calendar.SATURDAY es 7 y Calendar.SUNDAY es 1
+                return dayOfWeek != Calendar.SATURDAY && dayOfWeek != Calendar.SUNDAY
+            }
+        }
+    }
+
+    val datePickerState = rememberDatePickerState(
+        selectableDates = customSelectableDates
+    )
     Scaffold(
         bottomBar = {
             // --- BARRA INFERIOR: BOTÓN CONTINUAR ---
@@ -106,25 +139,44 @@ fun DateTimePurchaseScreen() {
             Spacer(modifier = Modifier.height(16.dp))
 
             // 2. Calendario de Material 3 empotrado en una tarjeta blanca
-            Card(//ESTO SE PUEDE QUITAR PERO QUEDA TODO CUADRADO
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    /*.height(340.dp)*/,
-                colors = CardDefaults.cardColors(containerColor = Color.White),
-                shape = RoundedCornerShape(16.dp),
+                    // 2. Le damos tu elevación y bordes redondeados idénticos a las tarjetas
+                    .shadow(
+                        elevation = 1.dp,
+                        shape = RoundedCornerShape(28.dp),
+                        clip = true // Corta el calendario para que herede las esquinas redondeadas
+                    )
+                    .background(Color.White, shape = RoundedCornerShape(28.dp))
+                    .padding(paddingValues = PaddingValues(bottom = 12.dp))
             ) {
-                /*No, el DatePicker oficial no tiene ningún parámetro de tamaño
-                 (size, width, height o density). Google diseñó este componente de forma
-                 híper rígida pensando en que ocupe toda la pantalla
-                 (en modo modal o pantalla completa).*/
-                DatePicker(
-                state = datePickerState,
-                showModeToggle = false,
-                title = null,
-                headline = null,
-                modifier = Modifier.fillMaxWidth()/*.height(340.dp)*/
-            )
-
+                // 3. El componente nativo de calendario
+                MaterialTheme(
+                    typography = MaterialTheme.typography.copy(
+                        // Achica el tamaño de los números de los días y las celdas
+                        bodyMedium = MaterialTheme.typography.bodyMedium.copy(fontSize = 13.sp),
+                        // Achica la barra superior donde dice el mes y año
+                        headlineLarge = MaterialTheme.typography.headlineLarge.copy(fontSize = 14.sp)
+                    )
+                ) {
+                    DatePicker(
+                        state = datePickerState,
+                        title = null,       // Ocultamos el título por defecto de Material para ahorrar espacio
+                        headline = null,    // Ocultamos la fecha gigante seleccionada arriba
+                        showModeToggle = false, // Quitamos el icono de lápiz para cambiar a modo texto (look más limpio)
+                        colors = DatePickerDefaults.colors(
+                            containerColor = Color.White,
+                            // Color del círculo del día seleccionado (Tu azul #0C56D1)
+                            selectedDayContainerColor = Color(0xFF0C56D1),
+                            selectedDayContentColor = Color.White,
+                            // Color del día de hoy
+                            todayContentColor = Color(0xFF0C56D1),
+                            todayDateBorderColor = Color(0xFF0C56D1),
+                            // Flechas para cambiar de mes
+                            navigationContentColor = Color(0xFF0C56D1)
+                        ),
+                    )
+                }
             }
 
 
