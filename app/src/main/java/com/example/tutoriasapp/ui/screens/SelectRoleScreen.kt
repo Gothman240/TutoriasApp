@@ -1,6 +1,7 @@
 package com.example.tutoriasapp.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,14 +34,14 @@ import androidx.compose.ui.unit.dp
 import com.example.tutoriasapp.R
 
 @Composable
-fun SelectRoleScreen() {
+fun SelectRoleScreen(navigateToSelectUniversity: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
                 brush = Brush.linearGradient(
-                    0.0f to Color(234,238,253),
-                    1.0f to Color(250,249,255),
+                    0.0f to Color(234, 238, 253),
+                    1.0f to Color(250, 249, 255),
                     start = Offset(x = 0f, y = 0f),
                     end = Offset(x = 0f, y = Float.POSITIVE_INFINITY)
                 )
@@ -64,6 +65,7 @@ fun SelectRoleScreen() {
             Spacer(Modifier.height(22.dp))
             Box(
                 modifier = Modifier
+                    .clickable(onClick = { navigateToSelectUniversity() })
                     .fillMaxWidth()
                     .shadow(
                         elevation = 2.dp,
@@ -190,5 +192,5 @@ fun SelectRoleScreen() {
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SelectRoleScreenPreview(){
-    SelectRoleScreen()
+    SelectRoleScreen(navigateToSelectUniversity = {})
 }

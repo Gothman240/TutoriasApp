@@ -53,8 +53,8 @@ fun SubjectChip(
             selectedLeadingIconColor = Color.White
         ),
         border = BorderStroke(
-            width = if (isSelected) 0.dp else 2.dp, // ⚠️ Cambia el grosor dinámicamente
-            color = if (isSelected) Color.Transparent else Color.LightGray.copy(alpha = 0.5f)
+            width = if (isSelected) 0.dp else 1.dp,
+            color = if (isSelected) Color.Transparent else Color.LightGray
         )
     )
 }

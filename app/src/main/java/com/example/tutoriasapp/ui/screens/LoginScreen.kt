@@ -182,7 +182,6 @@ fun LoginScreen(onLoginSuccess: () -> Unit) {
                     border = BorderStroke(1.dp, Color(195,198,214)),
                     onClick = { onLoginSuccess() },
                     shape = RoundedCornerShape(12.dp),
-                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 12.dp)
                     ) {
                     Image(
                         modifier = Modifier.size(20.dp),

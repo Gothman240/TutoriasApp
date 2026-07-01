@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
@@ -43,7 +45,7 @@ import com.example.tutoriasapp.R
 import com.example.tutoriasapp.ui.components.UniversityCard
 
 @Composable
-fun SelectUniversity(){
+fun SelectUniversity(navigateSelectSubjectScreen: () -> Unit) {
     var searchQuery by remember { mutableStateOf("") }
     Box(
         modifier = Modifier
@@ -59,7 +61,8 @@ fun SelectUniversity(){
     ) {
         Column(Modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 36.dp)) {
+            .padding(horizontal = 20.dp, vertical = 36.dp)
+            .verticalScroll(rememberScrollState())) {
             Spacer(Modifier.height(46.dp))
             Text("Cuentanos sobre tu universidad", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
             Spacer(modifier = Modifier.height(16.dp))
@@ -100,12 +103,12 @@ fun SelectUniversity(){
             Spacer(Modifier.height(8.dp))
             Text("Sugerido cerca de ti", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
             Spacer(Modifier.height(16.dp))
-            UniversityCard(name = "Universidad de Buenos Aires", location = "CABA, Buenos Aires") { }
-            UniversityCard(name = "Universidad Tecnológica Nacional (UTN)", location = "Avellaneda, Buenos Aires") { }
-            UniversityCard(name = "Universidad Nacional de Quilmes (UNQ)", location = "Quilmes, Buenos Aires") { }
-            UniversityCard(name = "Universidad Nacional de La Matanza", location = "San Justo, Buenos Aires") { }
-            UniversityCard(name = "Universidad Nacional de General San Martín (UNSAM)", location = "San Martín, Buenos Aires") { }
-
+            UniversityCard(name = "Universidad de Buenos Aires", location = "CABA, Buenos Aires") { navigateSelectSubjectScreen() }
+            UniversityCard(name = "Universidad Tecnológica Nacional (UTN)", location = "Avellaneda, Buenos Aires") { navigateSelectSubjectScreen() }
+            UniversityCard(name = "Universidad Nacional de Quilmes (UNQ)", location = "Quilmes, Buenos Aires") { navigateSelectSubjectScreen() }
+            UniversityCard(name = "Universidad Nacional de La Matanza", location = "San Justo, Buenos Aires") { navigateSelectSubjectScreen() }
+            UniversityCard(name = "Universidad Nacional de General San Martín (UNSAM)", location = "San Martín, Buenos Aires") { navigateSelectSubjectScreen() }
+            Spacer(modifier = Modifier.height(90.dp))
         }
         Surface(
             modifier = Modifier
@@ -122,7 +125,7 @@ fun SelectUniversity(){
                 }, color = Color.White
         ) {
             Button(
-                onClick = { /* Continuar flujo */ },
+                onClick = { navigateSelectSubjectScreen() },
                 enabled = searchQuery.isNotEmpty(),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -146,5 +149,5 @@ fun SelectUniversity(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SelectUniversityPreview(){
-    SelectUniversity()
+    SelectUniversity(navigateSelectSubjectScreen =  {})
 }

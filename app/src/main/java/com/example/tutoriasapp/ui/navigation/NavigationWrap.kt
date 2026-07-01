@@ -6,6 +6,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tutoriasapp.ui.screens.LoginScreen
 import com.example.tutoriasapp.ui.screens.SelectRoleScreen
+import com.example.tutoriasapp.ui.screens.SelectUniversity
+import com.example.tutoriasapp.ui.screens.SubjectSelectorScreen
 
 @Composable
 fun NavigationWrap(){
@@ -18,7 +20,17 @@ fun NavigationWrap(){
             )
         }
         composable<SelectRole>{
-            SelectRoleScreen()
+            SelectRoleScreen(
+                navigateToSelectUniversity = { navController.navigate(SelectUniversity)}
+            )
+        }
+        composable<SelectUniversity> {
+            SelectUniversity(
+                navigateSelectSubjectScreen = { navController.navigate((SelectSubject)) }
+            )
+        }
+        composable<SelectSubject> {
+            SubjectSelectorScreen()
         }
 
     }

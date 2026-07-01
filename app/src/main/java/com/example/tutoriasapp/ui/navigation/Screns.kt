@@ -8,3 +8,7 @@ object Login
 object Home
 @Serializable
 object SelectRole
+@Serializable
+object SelectUniversity
+@Serializable
+object SelectSubject

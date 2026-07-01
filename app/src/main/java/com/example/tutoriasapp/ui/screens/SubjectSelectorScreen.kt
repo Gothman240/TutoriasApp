@@ -53,7 +53,7 @@ data class Subject(
 @Composable
 fun SubjectSelectorScreen(){
     val initialSubjects = listOf(
-        Subject(1, "Álgebra", isSelected = true),
+        Subject(1, "Álgebra"),
         Subject(2, "Análisis Matemático"),
         Subject(3, "Física I"),
         Subject(4, "Química General"),
