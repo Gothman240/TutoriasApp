@@ -6,3 +6,5 @@ import kotlinx.serialization.Serializable
 object Login
 @Serializable
 object Home
+@Serializable
+object SelectRole

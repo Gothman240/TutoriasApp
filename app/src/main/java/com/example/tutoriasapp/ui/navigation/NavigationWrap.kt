@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tutoriasapp.ui.screens.LoginScreen
+import com.example.tutoriasapp.ui.screens.SelectRoleScreen
 
 @Composable
 fun NavigationWrap(){
@@ -12,10 +13,13 @@ fun NavigationWrap(){
 
     NavHost(navController = navController, startDestination = Login){
         composable<Login>{
-//            LoginScreen(navigateToSelectRole = { navController.navigate(SelectRoleScreen()) })
+            LoginScreen(
+                onLoginSuccess = { navController.navigate(SelectRole) }
+            )
         }
-        composable<Home>{
-//            Home(navController)
+        composable<SelectRole>{
+            SelectRoleScreen()
         }
+
     }
 }
