@@ -1,5 +1,6 @@
 package com.example.tutoriasapp.ui.screens
 
+import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -62,10 +63,12 @@ fun TutoriasScreen() {
                     style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
                     color = Color(0xFF1D1B20)
                 )
+                Spacer(Modifier.height(12.dp))
                 Text(
                     text = "Gestiona tus próximas clases virtuales",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Gray
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.Gray,
                 )
 
                 Spacer(modifier = Modifier.height(28.dp))
@@ -75,11 +78,12 @@ fun TutoriasScreen() {
                 // ==========================================
                 Text(
                     text = "PRÓXIMA CLASE",
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp),
-                    color = Color(0xFF0C56D1)
+                    style = MaterialTheme.typography.labelMedium.copy(letterSpacing = 1.2.sp),
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color(89,123,197)
                 )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(14.dp))
 
                 Card(
                     modifier = Modifier.fillMaxWidth(),
@@ -107,7 +111,8 @@ fun TutoriasScreen() {
                                 Text(
                                     text = "Cálculo II",
                                     style = MaterialTheme.typography.bodyMedium,
-                                    color = Color.Gray
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = Color(73,95,155)
                                 )
                             }
                         }
@@ -116,22 +121,36 @@ fun TutoriasScreen() {
 
                         Card(
                             modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFF0C56D1).copy(alpha = 0.04f)),
+                            colors = CardDefaults.cardColors(containerColor = Color(243,243,253)),
                             shape = RoundedCornerShape(12.dp)
                         ) {
                             Row(
-                                modifier = Modifier.padding(12.dp).fillMaxWidth(),
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 18.dp).fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(Icons.Default.CalendarMonth, null, tint = Color(0xFF0C56D1), modifier = Modifier.size(16.dp))
-                                    Spacer(modifier = Modifier.width(6.dp))
-                                    Text("15 de Octubre", style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold))
+                                Column {
+                                    Text("FECHA",
+                                        style = MaterialTheme.typography.labelMedium.copy(letterSpacing = 1.2.sp),
+                                        fontWeight = FontWeight.ExtraBold,
+                                        color = Color.Gray)
+                                    Spacer(Modifier.height(4.dp))
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(Icons.Default.CalendarMonth, null, tint = Color(41,36,46), modifier = Modifier.size(18.dp))
+                                        Spacer(modifier = Modifier.width(6.dp))
+                                        Text("15 de Octubre", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
+                                    }
                                 }
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(Icons.Default.Schedule, null, tint = Color(0xFF0C56D1), modifier = Modifier.size(16.dp))
-                                    Spacer(modifier = Modifier.width(6.dp))
-                                    Text("16:00 - 17:30", style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold))
+                                Column() {
+                                    Text("HORARIO",
+                                        style = MaterialTheme.typography.labelMedium.copy(letterSpacing = 1.2.sp),
+                                        fontWeight = FontWeight.ExtraBold,
+                                        color = Color.Gray)
+                                    Spacer(Modifier.height(4.dp))
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Icon(Icons.Default.Schedule, null, tint = Color(41,36,46), modifier = Modifier.size(18.dp))
+                                        Spacer(modifier = Modifier.width(6.dp))
+                                        Text("16:00 - 17:00", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
+                                    }
                                 }
                             }
                         }
@@ -146,7 +165,7 @@ fun TutoriasScreen() {
                                 onClick = {},
                                 modifier = Modifier.weight(1f).height(40.dp),
                                 shape = RoundedCornerShape(8.dp),
-                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0C56D1).copy(alpha = 0.15f), contentColor = Color(0xFF0C56D1))
+                                colors = ButtonDefaults.buttonColors(containerColor = Color(12,86,209), contentColor = Color.White)
                             ) {
                                 Text("Modificar", fontWeight = FontWeight.Bold, fontSize = 13.sp)
                             }
@@ -155,7 +174,8 @@ fun TutoriasScreen() {
                                 modifier = Modifier.weight(1f).height(40.dp),
                                 shape = RoundedCornerShape(8.dp),
                                 colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFFBA3200)),
-                                border = ButtonDefaults.outlinedButtonBorder.copy(brush = Brush.linearGradient(listOf(Color(0xFFBA3200).copy(alpha = 0.5f), Color(0xFFBA3200).copy(alpha = 0.5f))))
+                                border = ButtonDefaults.outlinedButtonBorder
+                                    .copy(brush = Brush.linearGradient(listOf(Color(0xFFBA3200).copy(alpha = 0.5f), Color(0xFFBA3200).copy(alpha = 0.5f))))
                             ) {
                                 Text("Cancelar", fontWeight = FontWeight.Bold, fontSize = 13.sp)
                             }
@@ -170,7 +190,7 @@ fun TutoriasScreen() {
                 // ==========================================
                 Text(
                     text = "OTRAS RESERVAS",
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp),
+                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.ExtraBold, letterSpacing = 1.2.sp),
                     color = Color.Gray
                 )
 
@@ -185,7 +205,8 @@ fun TutoriasScreen() {
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
-                        shape = RoundedCornerShape(14.dp)
+                        shape = RoundedCornerShape(14.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
                         Column(modifier = Modifier.padding(14.dp)) {
                             Row(
@@ -202,13 +223,16 @@ fun TutoriasScreen() {
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Column {
                                         Text(tutor, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
-                                        Text(datos.first, color = Color.Gray, style = MaterialTheme.typography.bodySmall)
+                                        Text(datos.first,
+                                            fontWeight = FontWeight.SemiBold,
+                                            color = Color.Gray,
+                                            style = MaterialTheme.typography.bodySmall)
                                     }
                                 }
                                 Text(
                                     text = datos.second,
-                                    style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Bold),
-                                    color = Color(0xFF0C56D1),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.ExtraBold),
+                                    color = Color(94,99,108),
                                     textAlign = TextAlign.End
                                 )
                             }
@@ -219,16 +243,20 @@ fun TutoriasScreen() {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 TextButton(
+                                    modifier = Modifier.weight(1f).height(32.dp),
                                     onClick = {},
-                                    colors = ButtonDefaults.textButtonColors(containerColor = Color(0xFFF3F3FA)),
+                                    colors = ButtonDefaults.textButtonColors(containerColor = Color(10,87,207).copy(alpha = .1f)),
                                     shape = RoundedCornerShape(6.dp),
-                                    modifier = Modifier.height(32.dp).width(160.dp)
                                 ) {
-                                    Text("Modificar", fontSize = 12.sp, color = Color.DarkGray, fontWeight = FontWeight.SemiBold)
+                                    Text("Modificar", fontSize = 13.sp, color = Color(67,87,106), fontWeight = FontWeight.SemiBold)
                                 }
-                                Spacer(modifier = Modifier.weight(1f))
-                                TextButton(onClick = {}, modifier = Modifier.height(32.dp)) {
-                                    Text("Cancelar", fontSize = 12.sp, color = Color(0xFFBA3200), fontWeight = FontWeight.SemiBold)
+                                Spacer(Modifier.width(8.dp))
+                                TextButton(onClick = {},
+                                    modifier = Modifier.height(32.dp).weight(.4f),
+                                    colors = ButtonDefaults.textButtonColors(containerColor = Color(0xFFBA3200).copy(alpha = .1f)),
+                                    shape = RoundedCornerShape(6.dp)
+                                ) {
+                                    Text("Cancelar", fontSize = 13.sp, color = Color(0xFFBA3200), fontWeight = FontWeight.SemiBold)
                                 }
                             }
                         }
@@ -242,7 +270,7 @@ fun TutoriasScreen() {
                 // ==========================================
                 Text(
                     text = "CLASES VIRTUALES TOMADAS",
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp),
+                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.ExtraBold, letterSpacing = 1.2.sp),
                     color = Color.Gray
                 )
 
@@ -251,7 +279,8 @@ fun TutoriasScreen() {
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(containerColor = Color.White),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                 ) {
                     Row(
                         modifier = Modifier.padding(14.dp).fillMaxWidth(),
@@ -268,7 +297,9 @@ fun TutoriasScreen() {
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
                                 Text("Elena Martínez", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
-                                Text("Ingeniería Legal", color = Color.Gray, style = MaterialTheme.typography.bodySmall)
+                                Text("Ingeniería Legal", fontWeight = FontWeight.SemiBold,
+                                    color = Color.Gray,
+                                    style = MaterialTheme.typography.bodySmall)
                             }
                         }
 
