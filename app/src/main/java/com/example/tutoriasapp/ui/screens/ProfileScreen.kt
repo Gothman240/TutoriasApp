@@ -34,7 +34,7 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StudentProfileScreen() {
+fun ProfileScreen() {
     Scaffold { innerPadding ->
         Box(
             modifier = Modifier
@@ -355,8 +355,8 @@ fun StudentProfileScreen() {
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun StudentProfileScreenPreview() {
+fun ProfileScreenPreview() {
     TutoriasAppTheme {
-        StudentProfileScreen()
+        ProfileScreen()
     }
 }

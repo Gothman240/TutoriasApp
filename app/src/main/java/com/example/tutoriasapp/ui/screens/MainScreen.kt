@@ -71,10 +71,10 @@ fun MainScreen() {
                 HomeScreen()
             }
             composable("classes_tab") {
-                // TODO: Implement ClassesScreen
+                TutoriasScreen()
             }
             composable("profile_tab") {
-                // TODO: Implement ProfileScreen
+                ProfileScreen()
             }
         }
     }
