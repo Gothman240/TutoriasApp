@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.tutoriasapp.ui.screens.HomeScreen
 import com.example.tutoriasapp.ui.screens.LoginScreen
+import com.example.tutoriasapp.ui.screens.MainScreen
 import com.example.tutoriasapp.ui.screens.SelectRoleScreen
 import com.example.tutoriasapp.ui.screens.SelectUniversity
 import com.example.tutoriasapp.ui.screens.SubjectSelectorScreen
@@ -30,7 +32,12 @@ fun NavigationWrap(){
             )
         }
         composable<SelectSubject> {
-            SubjectSelectorScreen()
+            SubjectSelectorScreen(
+                onSelectionComplete = { navController.navigate((MainScreen))}
+            )
+        }
+        composable<MainScreen>{
+            MainScreen()
         }
 
     }

@@ -53,7 +53,7 @@ data class Subject(
 )
 
 @Composable
-fun SubjectSelectorScreen(){
+fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
     val initialSubjects = listOf(
         Subject(1, "Álgebra"),
         Subject(2, "Análisis Matemático"),
@@ -164,7 +164,7 @@ fun SubjectSelectorScreen(){
                 }, color = Color.White
         ) {
             Button(
-                onClick = { /* Continuar flujo */ },
+                onClick = { onSelectionComplete() },
                 enabled = isButtonEnabled,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -189,5 +189,5 @@ fun SubjectSelectorScreen(){
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SubjectSelectorScreenPreview(){
-    SubjectSelectorScreen()
+    SubjectSelectorScreen({ })
 }

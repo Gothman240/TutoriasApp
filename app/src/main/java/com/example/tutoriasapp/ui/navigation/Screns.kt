@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 object Login
 @Serializable
-object Home
+object MainScreen
 @Serializable
 object SelectRole
 @Serializable
