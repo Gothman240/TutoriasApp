@@ -30,10 +30,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tutoriasapp.ui.components.ReviewCard
 import com.example.tutoriasapp.ui.components.SubjectChip
+import org.jetbrains.annotations.ApiStatus
 
-@OptIn(ExperimentalMaterial3Api::class, org.jetbrains.annotations.ApiStatus.Internal::class)
+@OptIn(ExperimentalMaterial3Api::class, ApiStatus.Internal::class)
 @Composable
-fun TutorProfileScreen() {
+fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
     // --- ESTADO LOCAL PARA LA CHANCHADA INTERACTIVA ---
     var horasContratadas by remember { mutableStateOf(1) }
     val precioBase = 4500
@@ -106,7 +107,7 @@ fun TutorProfileScreen() {
 
                     // 2. Botón de Reserva abajo de todo ocupando el ancho completo
                     Button(
-                        onClick = { /* Acción de Reserva */ },
+                        onClick = { onNavigateToDateTime() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -327,5 +328,7 @@ fun TutorProfileScreen() {
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun TutorProfileScreenPreview() {
-    TutorProfileScreen()
+    TutorProfileScreen(
+        onNavigateToDateTime = TODO()
+    )
 }
