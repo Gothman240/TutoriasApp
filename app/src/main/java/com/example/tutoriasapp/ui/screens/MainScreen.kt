@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -26,7 +27,7 @@ import com.example.tutoriasapp.R
 import com.example.tutoriasapp.ui.components.NavigationBar
 
 @Composable
-fun MainScreen() {
+fun MainScreen(rootNavController: NavHostController) {
     val subNavController = rememberNavController()
     Scaffold(
         bottomBar = {
@@ -68,7 +69,8 @@ fun MainScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("home_tab") {
-                HomeScreen()
+                HomeScreen(onNavigateToProfile = { rootNavController.navigate("tutor_profile") }
+                )
             }
             composable("classes_tab") {
                 TutoriasScreen()

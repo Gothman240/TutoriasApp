@@ -1,7 +1,6 @@
 package com.example.tutoriasapp.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,10 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,12 +27,14 @@ import java.util.Calendar
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun DateTimePurchaseScreenPreview() {
-    DateTimePurchaseScreen()
+    DateTimePurchaseScreen(
+        onNavigateToSummary = TODO()
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DateTimePurchaseScreen() {
+fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
     // Estado nativo del calendario de Material 3
     val customSelectableDates = remember {
         object : SelectableDates {
@@ -79,7 +80,7 @@ fun DateTimePurchaseScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     Button(
-                        onClick = { /* Truco: Pon acá un log o la navegación directa */ },
+                        onClick = { onNavigateToSummary() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -293,7 +294,7 @@ fun TimeSlotButtonHardcoded(
             text = text,
             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
             // Si está deshabilitado le metemos un tachado visual simple
-            textDecoration = if (!isEnabled) androidx.compose.ui.text.style.TextDecoration.LineThrough else null
+            textDecoration = if (!isEnabled) TextDecoration.LineThrough else null
         )
     }
 }

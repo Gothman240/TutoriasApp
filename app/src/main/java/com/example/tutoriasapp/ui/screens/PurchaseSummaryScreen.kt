@@ -35,7 +35,7 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PurchaseSummaryScreen() {
+fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -64,7 +64,7 @@ fun PurchaseSummaryScreen() {
                         .padding(horizontal = 20.dp, vertical = 16.dp)
                 ) {
                     Button(
-                        onClick = { /* Procesar pago ficticio */ },
+                        onClick = { onNavigateToSuccess() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -250,6 +250,8 @@ fun PurchaseSummaryScreen() {
 @Composable
 fun PurchaseSummaryScreenPreview() {
     TutoriasAppTheme {
-        PurchaseSummaryScreen()
+        PurchaseSummaryScreen(
+            onNavigateToSuccess = {}
+        )
     }
 }
