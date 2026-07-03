@@ -33,12 +33,11 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TutoriasScreen() {
-    Scaffold { innerPadding ->
+
         // Fondo gradiente que ahora ocupa el 100% real de la pantalla
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
                 .background(
                     brush = Brush.linearGradient(
                         0.0f to Color(234, 238, 253),
@@ -231,7 +230,7 @@ fun TutoriasScreen() {
                                 }
                                 Text(
                                     text = datos.second,
-                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.ExtraBold),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold),
                                     color = Color(94,99,108),
                                     textAlign = TextAlign.End
                                 )
@@ -313,12 +312,9 @@ fun TutoriasScreen() {
                         }
                     }
                 }
-
-                Spacer(modifier = Modifier.height(24.dp))
             }
         }
     }
-}
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable

@@ -35,11 +35,9 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen() {
-    Scaffold { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
                 .background(
                     brush = Brush.linearGradient(
                         0.0f to Color(234, 238, 253),
@@ -346,12 +344,10 @@ fun ProfileScreen() {
                         )
                     }
                 }
-
-                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }
-}
+
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
