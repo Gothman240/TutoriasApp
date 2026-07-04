@@ -1,5 +1,6 @@
 package com.example.tutoriasapp.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,12 +26,16 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ReviewCard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    nombre: String,
+    texto: String,
+    dias: String
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 6.dp),
+        border = BorderStroke(1.dp, color = Color(195, 198, 213)),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
@@ -62,12 +68,12 @@ fun ReviewCard(
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = "Marina Sanz",
+                        text = nombre,
                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                         color = Color(0xFF1D1B20)
                     )
                     Text(
-                        text = "Hace 2 días",
+                        text = dias,
                         style = MaterialTheme.typography.bodySmall,
                         color = Color.Gray
                     )
@@ -81,6 +87,7 @@ fun ReviewCard(
                             imageVector = Icons.Filled.Star,
                             contentDescription = "Estrella",
                             modifier = Modifier.size(18.dp),
+                            tint = Color(76,94,139)
                         )
                     }
                 }
@@ -89,10 +96,10 @@ fun ReviewCard(
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = "\"Alejandro explica de maravilla. Las clases de Cálculo se me hacían imposibles y con él todo ha cobrado sentido. ¡Muy recomendado!\"",
+                text = texto,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     lineHeight = 20.sp,
-                    fontStyle = androidx.compose.ui.text.font.FontStyle.Italic
+                    fontStyle = FontStyle.Italic
                 ),
                 color = Color(0xFF49454F),
                 maxLines = 4,
@@ -105,5 +112,10 @@ fun ReviewCard(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ReviewCardPreview() {
-    ReviewCard()
+    ReviewCard(
+        modifier = TODO(),
+        nombre = "Maria Sanz",
+        texto = "Alejandro explica de maravilla. Las clases de Cálculo se me hacían imposibles y con él todo ha cobrado sentido. ¡Muy recomendado!",
+        dias = "Hace 2 días"
+    )
 }

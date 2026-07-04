@@ -1,5 +1,6 @@
 package com.example.tutoriasapp.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -129,14 +130,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(
-                    brush = Brush.linearGradient(
-                        0.0f to Color(234, 238, 253),
-                        1.0f to Color(250, 249, 255),
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = 0f, y = Float.POSITIVE_INFINITY)
-                    )
-                )
+                .background(Color(250,248,255))
         ) {
             Column(
                 modifier = Modifier
@@ -177,23 +171,32 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Valoración",
-                            tint = Color(0xFFFFB300),
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "4.7",
-                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                            color = Color(0xFF1D1B20)
-                        )
+                        Row(
+                            modifier = Modifier
+                                .background(Color(218,227,254), shape = RoundedCornerShape(10.dp))
+                                .padding(horizontal = 12.dp, vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                contentDescription = null,
+                                tint = Color(2,27,67), // Tu azul o dorado
+                                modifier = Modifier.size(14.dp)
+                            )
+                            Text(
+                                text = "4.7",
+                                style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.ExtraBold),
+                                color = Color(2,27,67)
+                            )
+                        }
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "•  Universidad Nacional de La Matanza",
                             style = MaterialTheme.typography.bodyMedium,
-                        )
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray
+                            )
                     }
                 }
 
@@ -206,8 +209,9 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                 ) {
                     Card(
                         modifier = Modifier.weight(1f),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFF0C56D1).copy(alpha = .08f)),
-                        shape = RoundedCornerShape(12.dp)
+                        colors = CardDefaults.cardColors(containerColor = Color(243,243,253)),
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, color = Color(195,198,213))
                     ) {
                         Column(
                             modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -224,6 +228,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             Text(
                                 text = "Graduado en",
                                 style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.ExtraBold,
                                 color = Color.Gray,
                                 textAlign = TextAlign.Center
                             )
@@ -231,7 +236,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             Text(
                                 text = "Ingeniería Civil",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
-                                color = Color(0xFF211F24),
+                                color = Color(0,65,152),
                                 textAlign = TextAlign.Center
                             )
                         }
@@ -239,8 +244,9 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
 
                     Card(
                         modifier = Modifier.weight(1f),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFF0C56D1).copy(alpha = .08f)),
-                        shape = RoundedCornerShape(12.dp)
+                        colors = CardDefaults.cardColors(containerColor = Color(243,243,253)),
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, color = Color(195,198,213))
                     ) {
                         Column(
                             modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -257,6 +263,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             Text(
                                 text = "Experiencia",
                                 style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.ExtraBold,
                                 color = Color.Gray,
                                 textAlign = TextAlign.Center
                             )
@@ -264,7 +271,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             Text(
                                 text = "5+ Años",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
-                                color = Color(0xFF211F24),
+                                color = Color(0,65,152),
                                 textAlign = TextAlign.Center
                             )
                         }
@@ -289,19 +296,10 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         SubjectChip(name = "Cálculo Númerico", isSelected = false, onSelectionChanged = {})
                     }
 
-                    Box(
-                        modifier = Modifier
-                            .matchParentSize()
-                            .clickable(
-                                onClick = {},
-                                enabled = false,
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = null
-                            )
-                    )
+
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(18.dp))
 
                 // Sección Reseñas
                 Row(
@@ -311,14 +309,20 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                 ) {
                     Text("Reseñas de Alumnos", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
                     TextButton(onClick = { /* Ver todas */ }) {
-                        Text("Ver todas", style = MaterialTheme.typography.labelLarge)
+                        Text("Ver todas",
+                            style = MaterialTheme.typography.labelLarge,
+                            )
                     }
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                ReviewCard()
-                ReviewCard()
+                ReviewCard(nombre = "María Chile", dias = "Hace 2 días",
+                    texto = "Alejandro explica de maravilla. Las clases de Cálculo se me hacían" +
+                        " imposibles y con él todo ha cobrado sentido. ¡Muy recomendado!")
+                ReviewCard(nombre = "Jorge Andrada", dias = "Hace 1 semana",
+                    texto = "Puntual y muy preparado. Trae sus propios ejercicios " +
+                        "complementarios que ayudan mucho a entender la teoría.")
             }
         }
     }
@@ -329,6 +333,6 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
 @Composable
 fun TutorProfileScreenPreview() {
     TutorProfileScreen(
-        onNavigateToDateTime = TODO()
+        onNavigateToDateTime = {}
     )
 }

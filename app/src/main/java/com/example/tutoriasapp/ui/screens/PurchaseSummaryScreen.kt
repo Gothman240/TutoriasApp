@@ -1,5 +1,6 @@
 package com.example.tutoriasapp.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -95,14 +96,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(
-                    brush = Brush.linearGradient(
-                        0.0f to Color(234, 238, 253),
-                        1.0f to Color(250, 249, 255),
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = 0f, y = Float.POSITIVE_INFINITY)
-                    )
-                )
+                .background(Color(250,248,255))
         ) {
             Column(
                 modifier = Modifier
@@ -112,9 +106,9 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
             ) {
 
                 // 1. TU COMPONENTE ORIGINAL (Contiene Tutor + Fecha + Hora en tu diseño)
-                TutorCardPurchase()
+                TutorCardPurchase(monto = "$4,500")
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(36.dp))
 
                 // 2. SECCIÓN: MÉTODO DE PAGO
                 Text(
@@ -123,7 +117,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                     color = Color(0xFF1D1B20)
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 // Opción Seleccionada: Mercado Pago
                 Card(
@@ -143,17 +137,19 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                         Box(
                             modifier = Modifier
                                 .size(40.dp)
-                                .background(Color(0xFF00AAE4).copy(alpha = 0.1f), RoundedCornerShape(8.dp)),
+                                .background(Color(0,65,152),RoundedCornerShape(4.dp)),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("💳", fontSize = 20.sp)
+                            Icon(painter = painterResource(R.drawable.outline_credit_card_24),
+                                contentDescription = null,
+                                tint = Color.White)
                         }
 
                         Spacer(modifier = Modifier.width(12.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
                             Text(text = "Mercado Pago", fontWeight = FontWeight.Bold, color = Color(0xFF1D1B20))
-                            Text(text = "Pago rápido y seguro", style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                            Text(text = "Pago rápido y seguro", style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.SemiBold, color = Color.Gray)
                         }
 
                         // Radio Button Simulado encendido
@@ -174,16 +170,16 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                         verticalAlignment = Alignment.Top
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Info,
+                            painter = painterResource(R.drawable.outline_info_24),
                             contentDescription = null,
-                            tint = Color(0xFF0C56D1),
-                            modifier = Modifier.size(20.dp)
+                            tint = Color(0,65,152),
+                            modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
                             text = "Serás redirigido a la aplicación de Mercado Pago para completar el pago de forma segura.",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = Color(0xFF1D1B20)
+                            color = Color.Gray
                         )
                     }
                 }
@@ -193,19 +189,19 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                 // 4. TARJETA RESUMEN DE COSTOS TOTALES
                 Card(
                     modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFF0C56D1).copy(alpha = 0.04f)),
-                    shape = RoundedCornerShape(16.dp)
+                    colors = CardDefaults.cardColors(containerColor = Color(237,237,247)),
+                    border = BorderStroke(1.dp, color = Color(195,198,213))
                 ) {
                     Column(modifier = Modifier.padding(20.dp)) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(text = "Clase virtual de 1 hora", color = Color.Gray, style = MaterialTheme.typography.bodyMedium)
-                            Text(text = "$4.500", color = Color.Gray, style = MaterialTheme.typography.bodyMedium)
+                            Text(text = "Clase virtual de 1 hora", fontWeight = FontWeight.SemiBold, color = Color.Gray, style = MaterialTheme.typography.bodyMedium)
+                            Text(text = "$4.500", fontWeight = FontWeight.SemiBold, color = Color.Gray, style = MaterialTheme.typography.bodyMedium)
                         }
 
-                        HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = Color.LightGray.copy(alpha = 0.4f))
+                        HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp), color = Color.Gray.copy(alpha = 0.4f))
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -214,9 +210,9 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                         ) {
                             Text(text = "Total", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
                             Text(
-                                text = "$4.500 ARS",
+                                text = "$5.000 ARS",
                                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                                //color = Color(0xFF0C56D1)
+                                color = Color(0,65,152)
                             )
                         }
 
@@ -233,14 +229,14 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                         Text(
                             text = legalText,
                             style = MaterialTheme.typography.bodySmall,
-                            //color = Color.Gray,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.Gray,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
             }
         }
     }

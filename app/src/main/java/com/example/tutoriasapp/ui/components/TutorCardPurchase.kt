@@ -1,6 +1,8 @@
 package com.example.tutoriasapp.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,11 +16,13 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.CalendarToday
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Badge
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -40,14 +44,15 @@ import androidx.compose.ui.unit.sp
 import com.example.tutoriasapp.R
 
 @Composable
-fun TutorCardPurchase(modifier: Modifier = Modifier) {
+fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "") {
     Card(
         modifier = modifier
             .fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFF0C56D1).copy(alpha = 0.06f) // Fondo sutil para que combine con el gradiente de la app
+            containerColor = Color(255,255,255),
         ),
-        shape = RoundedCornerShape(16.dp) // Esquinas más suaves acordes a la app
+        border = BorderStroke(1.dp, color = Color(195,198,213)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
 
@@ -71,7 +76,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                     Text(
                         text = "Alejandro Ruiz",
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                        color = Color(0xFF1D1B20)
+                        color = Color(25,27,35)
                     )
 
                     Spacer(modifier = Modifier.height(4.dp))
@@ -79,7 +84,8 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                     Text(
                         text = "Cálculo II",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Gray
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(75,104,172)
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
@@ -90,38 +96,9 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "$4.500",
+                            text = monto,
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                             color = Color(0xFF1D1B20)
-                        )
-
-                        // Badge con estilo Material 3 estilizado
-                        SuggestionChip(
-                            onClick = {},
-                            label = {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Star,
-                                        contentDescription = null,
-                                        tint = Color(0xFFFFB300), // El mismo dorado que usamos en el perfil
-                                        modifier = Modifier.size(14.dp) // Tamaño ideal para que entre cómodo en los 26.dp de alto
-                                    )
-                                    Text(
-                                        text = "4.7",
-                                        fontSize = 11.sp,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-                            },
-                            colors = SuggestionChipDefaults.suggestionChipColors(
-                                containerColor = Color(0xFF0C56D1).copy(alpha = .6f),
-                                labelColor = Color.White // Texto oscuro nítido para que se lea perfecto
-                            ),
-                            border = null,
-                            modifier = Modifier.height(26.dp)
                         )
                     }
                 }
@@ -134,7 +111,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
             // --- PARTE INFERIOR: TARJETA DE FECHA Y HORARIO ---
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = Color.White), // Tarjeta interna blanca limpia
+                colors = CardDefaults.cardColors(containerColor = Color(242,243,253)),
                 shape = RoundedCornerShape(12.dp),
                 //border = CardDefaults.outlinedCardColors().border // Borde finito limpio
             ) {
@@ -149,21 +126,22 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = "FECHA",
-                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                            color = Color.Gray
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.Gray,
+                            textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
-                                imageVector = Icons.Default.CalendarMonth, // Reemplazo del emoji de calendario
+                                imageVector = Icons.Default.CalendarToday, // Reemplazo del emoji de calendario
                                 contentDescription = null,
-                                tint = Color(0xFF0C56D1),
                                 modifier = Modifier.size(18.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
                                 text = "15 de Octubre",
-                                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)
+                                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                             )
                         }
                     }
@@ -172,21 +150,22 @@ fun TutorCardPurchase(modifier: Modifier = Modifier) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = "HORARIO",
-                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                            color = Color.Gray
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.Gray,
+                            textAlign = TextAlign.Center
                         )
                         Spacer(modifier = Modifier.height(6.dp))
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
                                 imageVector = Icons.Default.Schedule, // Reemplazo del emoji de reloj
                                 contentDescription = null,
-                                tint = Color(0xFF0C56D1),
                                 modifier = Modifier.size(18.dp)
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
                                 text = "16:00 - 17:30",
-                                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold)
+                                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                             )
                         }
                     }

@@ -79,7 +79,7 @@ fun SuccessPurchaseScreen() {
                 .padding(innerPadding)
                 .background(
                     brush = Brush.linearGradient(
-                        0.0f to Color(234, 238, 253),
+                        0.0f to Color(250,249,255),
                         1.0f to Color(250, 249, 255),
                         start = Offset(x = 0f, y = 0f),
                         end = Offset(x = 0f, y = Float.POSITIVE_INFINITY)
@@ -121,7 +121,7 @@ fun SuccessPurchaseScreen() {
                     textAlign = TextAlign.Center
                 )
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
                     text = "Tu sesión ha sido confirmada. Alejandro te espera.",
@@ -148,7 +148,7 @@ fun SuccessPurchaseScreen() {
                     color = Color.Gray
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(18.dp))
 
                 OutlinedButton(
                     onClick = { /* Simular abrir WhatsApp web/app */ },
@@ -170,7 +170,7 @@ fun SuccessPurchaseScreen() {
                             tint = Color(0xFF25D366),
                             modifier = Modifier.size(24.dp)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Spacer(modifier = Modifier.width(16.dp))
                         Text(
                             text = "WhatsApp",
                             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
