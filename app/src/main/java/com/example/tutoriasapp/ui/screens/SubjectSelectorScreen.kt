@@ -84,6 +84,7 @@ fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
     ) {
         Column(Modifier
             .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
             .padding(horizontal = 20.dp, vertical = 36.dp)) {
             Spacer(Modifier.height(46.dp))
             Text("¿Con qué materias necesitas ayuda?", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
@@ -129,8 +130,7 @@ fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
             }
             Spacer(Modifier.height(16.dp))
             FlowRow(
-                modifier = Modifier.fillMaxWidth()
-                    .verticalScroll(rememberScrollState()),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {

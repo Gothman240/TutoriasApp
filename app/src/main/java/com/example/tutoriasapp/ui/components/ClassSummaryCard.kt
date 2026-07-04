@@ -3,7 +3,7 @@ package com.example.tutoriasapp.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CalendarMonth
+import androidx.compose.material.icons.outlined.CalendarToday
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -20,8 +20,9 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ClassSummaryCard(
-    //bookingInfo: String, // Ej: "Miércoles, 8 de Mayo • 02:00 PM"
-    modifier: Modifier = Modifier
+    selectedDateText: String,
+    selectedTime: String?,
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
@@ -54,7 +55,7 @@ fun ClassSummaryCard(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "Miércoles, 8 de Mayo • 14:00",
+                    text = "$selectedDateText • $selectedTime hs",
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontWeight = FontWeight.Medium
                     ),
@@ -64,10 +65,10 @@ fun ClassSummaryCard(
 
             // Ícono de calendario de Material 3 a la derecha
             Icon(
-                imageVector = Icons.Outlined.CalendarMonth,
+                imageVector = Icons.Outlined.CalendarToday,
                 contentDescription = "Fecha seleccionada",
                 modifier = Modifier.size(22.dp),
-                tint = Color(0xFF434565)
+                tint = Color(76,94,139)
             )
         }
     }
@@ -76,5 +77,8 @@ fun ClassSummaryCard(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ClassSummaryCardPreview() {
-    ClassSummaryCard()
+    ClassSummaryCard(
+        selectedDateText = "Miércoles, 8 de Mayo",
+        selectedTime = "14:00"
+    )
 }

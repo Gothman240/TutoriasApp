@@ -1,5 +1,6 @@
 package com.example.tutoriasapp.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -29,9 +30,10 @@ fun TutorCardSelected(
             .fillMaxWidth()
             /*.padding(/*horizontal = 16.dp, vertical = */6.dp)*/,
         colors = CardDefaults.cardColors(
-            containerColor = Color.White
+            containerColor = Color(255,255,255),
         ),
-        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(1.dp, color = Color(195,198,213)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
             modifier = Modifier
@@ -67,12 +69,6 @@ fun TutorCardSelected(
 
                         )
                     )
-                    Icon(
-                        imageVector = Icons.Filled.Verified,
-                        contentDescription = "Verificado",
-                        modifier = Modifier.size(16.dp),
-                        //tint = Color(0xFF8B4F1D) // El tono marrón/dorado de tu insignia
-                    )
                 }
 
                 Spacer(modifier = Modifier.height(2.dp))
@@ -81,7 +77,8 @@ fun TutorCardSelected(
                 Text(
                     text = "Cálculo II",
                     style = MaterialTheme.typography.bodyMedium,
-                    //color = Color.Gray
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color(75,104,172)
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -90,17 +87,17 @@ fun TutorCardSelected(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = Color(0xFF0C56D1).copy(alpha = 0.1f), // Tu azul con opacidad
+                            color = Color(0,65,152),
                             shape = CircleShape
                         )
-                        .padding(horizontal = 14.dp, vertical = 6.dp), // Padding más amplio para hacerla más grande
+                        .padding(horizontal = 10.dp, vertical = 4.dp), // Padding más amplio para hacerla más grande
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = "$4.500/hr",
                         style = MaterialTheme.typography.bodyMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            //color = Color(0xFF0C56D1), // Tu azul pleno
+                            color = Color.White, // Tu azul pleno
                             fontSize = 14.sp // Un punto más grande que la escala común
                         )
                     )

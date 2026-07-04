@@ -9,7 +9,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -20,21 +23,38 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tutoriasapp.ui.components.ClassSummaryCard
+import com.example.tutoriasapp.ui.components.TimeButton
 import com.example.tutoriasapp.ui.components.TutorCardSelected
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import java.util.Locale
 
-// --- FUNCIÓN PREVIEW PARA VERLA EN ANDROID STUDIO ---
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun DateTimePurchaseScreenPreview() {
-    DateTimePurchaseScreen(
-        onNavigateToSummary = TODO()
-    )
-}
+data class TimeSlot(
+    val time: String,
+    val isAvailable: Boolean = true
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
+
+    val timeSlots = remember {
+        listOf(
+            TimeSlot("09:00"),
+            TimeSlot("10:30"),
+            TimeSlot("12:00", isAvailable = false), // Deshabilitado
+            TimeSlot("14:00"),
+            TimeSlot("15:00"),
+            TimeSlot("17:00")
+        )
+    }
+
+    var selectedTime by remember { mutableStateOf<String?>(null) }
+
+
+
     // Estado nativo del calendario de Material 3
     val customSelectableDates = remember {
         object : SelectableDates {
@@ -65,13 +85,17 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
     val datePickerState = rememberDatePickerState(
         selectableDates = customSelectableDates
     )
+    val selectedDateText = remember(datePickerState.selectedDateMillis) {
+        datePickerState.selectedDateMillis.formatToFriendlyDate()
+    }
+
     Scaffold(
         bottomBar = {
             // --- BARRA INFERIOR: BOTÓN CONTINUAR ---
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 tonalElevation = 8.dp,
-                color = Color.White
+                color = Color(250,248,255)
             ) {
                 Box(
                     modifier = Modifier
@@ -122,7 +146,7 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
             // 1. Cabecera (Tu componente visual previo)
             TutorCardSelected()
 
-            //Spacer(modifier = Modifier.height(14.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
             // Textos informativos
             Text(
@@ -181,7 +205,7 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
             }
 
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(28.dp))
 
             // 3. Grilla de Horarios Directos
             Text(
@@ -189,64 +213,35 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                 color = Color(0xFF1D1B20)
             )
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
-            // Fila de Horarios 1
-            Row(
+            FlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                maxItemsInEachRow = 3 // Forzar un máximo de 3 elementos por fila como en tu imagen
             ) {
-                TimeSlotButtonHardcoded(
-                    text = "09:00 AM",
-                    isSelected = false,
-                    isEnabled = true,
-                    modifier = Modifier.weight(1f)
-                )
-                TimeSlotButtonHardcoded(
-                    text = "10:30 AM",
-                    isSelected = false,
-                    isEnabled = true,
-                    modifier = Modifier.weight(1f)
-                )
-                TimeSlotButtonHardcoded(
-                    text = "12:00 PM",
-                    isSelected = false,
-                    isEnabled = false,
-                    modifier = Modifier.weight(1f)
-                )
+                timeSlots.forEach { slot ->
+                    val isSelected = selectedTime == slot.time
+
+                    TimeButton(
+                        slot = slot,
+                        isSelected = isSelected,
+                        onClick = {
+                            // Actualizamos el estado de la pantalla al hacer clic
+                            selectedTime = slot.time
+                        }
+                    )
+                }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
 
-            // Fila de Horarios 2
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                TimeSlotButtonHardcoded(
-                    text = "02:00 PM",
-                    isSelected = true,
-                    isEnabled = true,
-                    modifier = Modifier.weight(1f)
-                )
-                TimeSlotButtonHardcoded(
-                    text = "03:30 PM",
-                    isSelected = false,
-                    isEnabled = true,
-                    modifier = Modifier.weight(1f)
-                )
-                TimeSlotButtonHardcoded(
-                    text = "05:00 PM",
-                    isSelected = false,
-                    isEnabled = true,
-                    modifier = Modifier.weight(1f)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(22.dp))
 
             // 4. Tu resumen hardcodeado directo para la demo
-            ClassSummaryCard(/*bookingInfo = "Miércoles, 8 de Mayo • 02:00 PM"*/)
+            if (selectedDateText.isNotEmpty() && selectedTime != null) {
+                ClassSummaryCard(selectedDateText, selectedTime)
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
         }
@@ -297,4 +292,29 @@ fun TimeSlotButtonHardcoded(
             textDecoration = if (!isEnabled) TextDecoration.LineThrough else null
         )
     }
+}
+
+fun Long?.formatToFriendlyDate(): String {
+    if (this == null) return ""
+
+    // Convertir los milisegundos a una fecha local (LocalDate)
+    val localDate = Instant.ofEpochMilli(this)
+        .atZone(ZoneId.of("UTC")) // El DatePicker de Compose trabaja en UTC
+        .toLocalDate()
+
+    // Crear el patrón: "EEEE" es el día completo, "d" el número, "MMMM" el mes completo
+    // Usamos 'de' como texto literal entre comillas simples
+    val formatter = DateTimeFormatter.ofPattern("EEEE, d 'de' MMMM", Locale("es", "ES"))
+
+    // Formatear y capitalizar la primera letra (ya que en español los días/meses van en minúscula)
+    val formattedDate = localDate.format(formatter)
+    return formattedDate.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ROOT) else it.toString() }
+}
+
+@Preview()
+@Composable
+fun DateTimePurchaseScreenPreview() {
+    DateTimePurchaseScreen(
+        onNavigateToSummary = {}
+    )
 }
