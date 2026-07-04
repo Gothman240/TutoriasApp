@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -31,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tutoriasapp.R
+import com.example.tutoriasapp.ui.components.AnimatedPayButton
 import com.example.tutoriasapp.ui.components.TutorCardPurchase
 import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 
@@ -39,18 +41,34 @@ import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Resumen de Reserva", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)) },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent, // Al ser transparente, absorbe el gradiente del fondo
-                    scrolledContainerColor = Color.Transparent // Por si scrolleas, que no cambie de color
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, top = 24.dp, bottom = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
                 )
-            )
+                Spacer(Modifier.weight(.1f))
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+                Spacer(Modifier.weight(.1f))
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+            }
         },
         bottomBar = {
             // --- BOTÓN INFERIOR: CONFIRMAR Y PAGAR ---
@@ -64,29 +82,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 16.dp)
                 ) {
-                    Button(
-                        onClick = { onNavigateToSuccess() },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(48.dp),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF0C56D1)//.copy(alpha = 0.2f), // Azul tonal deslavado de la imagen
-                            //contentColor = Color(0xFF0C56D1)
-                        )
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            Icon(Icons.Default.Lock, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = "Confirmar y Pagar",
-                                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
-                            )
-                        }
-                    }
+                    AnimatedPayButton { onNavigateToSuccess() }
                 }
             }
         }
@@ -96,13 +92,14 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(Color(250,248,255))
+                .background(Color(250, 248, 255))
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
+                    .padding(horizontal = 20.dp, vertical = 8.dp),
+                    verticalArrangement = Arrangement.Center
             ) {
 
                 // 1. TU COMPONENTE ORIGINAL (Contiene Tutor + Fecha + Hora en tu diseño)
@@ -137,7 +134,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
                         Box(
                             modifier = Modifier
                                 .size(40.dp)
-                                .background(Color(0,65,152),RoundedCornerShape(4.dp)),
+                                .background(Color(0, 65, 152), RoundedCornerShape(4.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             Icon(painter = painterResource(R.drawable.outline_credit_card_24),

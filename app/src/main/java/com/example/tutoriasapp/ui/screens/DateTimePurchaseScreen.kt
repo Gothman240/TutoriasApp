@@ -90,6 +90,36 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
     }
 
     Scaffold(
+        topBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, top = 24.dp, bottom = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+                Spacer(Modifier.weight(.1f))
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+                Spacer(Modifier.weight(.1f))
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209).copy(alpha = .2f), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+            }
+        },
         bottomBar = {
             // --- BARRA INFERIOR: BOTÓN CONTINUAR ---
             Surface(
@@ -140,7 +170,8 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
                 .padding(innerPadding)
                 .background(Color(0xFFFDFBFF))
                 .verticalScroll(rememberScrollState())
-                .padding(16.dp)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Center
         ) {
 
             // 1. Cabecera (Tu componente visual previo)

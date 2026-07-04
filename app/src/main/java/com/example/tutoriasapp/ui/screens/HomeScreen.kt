@@ -200,6 +200,6 @@ fun HomeScreen(onNavigateToProfile: () -> Unit) {
 @Composable
 fun HomeScreenPreview(){
     HomeScreen(
-        onNavigateToProfile = TODO()
+        onNavigateToProfile = {}
     )
 }

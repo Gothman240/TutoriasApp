@@ -103,10 +103,10 @@ fun SelectUniversity(navigateSelectSubjectScreen: () -> Unit) {
             Spacer(Modifier.height(8.dp))
             Text("Sugerido cerca de ti", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
             Spacer(Modifier.height(16.dp))
+            UniversityCard(name = "Universidad Nacional de La Matanza", location = "San Justo, Buenos Aires") { navigateSelectSubjectScreen() }
             UniversityCard(name = "Universidad de Buenos Aires", location = "CABA, Buenos Aires") { navigateSelectSubjectScreen() }
             UniversityCard(name = "Universidad Tecnológica Nacional (UTN)", location = "Avellaneda, Buenos Aires") { navigateSelectSubjectScreen() }
             UniversityCard(name = "Universidad Nacional de Quilmes (UNQ)", location = "Quilmes, Buenos Aires") { navigateSelectSubjectScreen() }
-            UniversityCard(name = "Universidad Nacional de La Matanza", location = "San Justo, Buenos Aires") { navigateSelectSubjectScreen() }
             UniversityCard(name = "Universidad Nacional de General San Martín (UNSAM)", location = "San Martín, Buenos Aires") { navigateSelectSubjectScreen() }
             Spacer(modifier = Modifier.height(90.dp))
         }

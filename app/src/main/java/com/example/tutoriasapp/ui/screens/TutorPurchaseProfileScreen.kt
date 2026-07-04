@@ -42,6 +42,36 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
     val precioTotal = precioBase * horasContratadas
 
     Scaffold(
+        topBar = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, end = 20.dp, top = 24.dp, bottom = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+                Spacer(Modifier.weight(.1f))
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209).copy(alpha = .2f), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+                Spacer(Modifier.weight(.1f))
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .background(Color(12, 86, 209).copy(alpha = .2f), RoundedCornerShape(10.dp))
+                        .padding(vertical = 2.dp)
+                )
+            }
+        },
         bottomBar = {
             // --- BARRA INFERIOR REESTRUCTURADA EN VERTICAL ---
             Surface(
@@ -86,7 +116,9 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         ) {
                             IconButton(
                                 onClick = { if (horasContratadas > 1) horasContratadas-- },
-                                modifier = Modifier.size(32.dp).background(Color(0xFFF3F3FA), CircleShape)
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .background(Color(0xFFF3F3FA), CircleShape)
                             ) {
                                 Icon(Icons.Default.Remove, contentDescription = "Restar hora", modifier = Modifier.size(16.dp))
                             }
@@ -99,7 +131,9 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
 
                             IconButton(
                                 onClick = { if (horasContratadas < 5) horasContratadas++ }, // Límite de 5 para la demo
-                                modifier = Modifier.size(32.dp).background(Color(0xFFF3F3FA), CircleShape)
+                                modifier = Modifier
+                                    .size(32.dp)
+                                    .background(Color(0xFFF3F3FA), CircleShape)
                             ) {
                                 Icon(Icons.Default.Add, contentDescription = "Sumar hora", modifier = Modifier.size(16.dp))
                             }
@@ -130,7 +164,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-                .background(Color(250,248,255))
+                .background(Color(250, 248, 255))
         ) {
             Column(
                 modifier = Modifier
@@ -173,7 +207,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                     ) {
                         Row(
                             modifier = Modifier
-                                .background(Color(218,227,254), shape = RoundedCornerShape(10.dp))
+                                .background(Color(218, 227, 254), shape = RoundedCornerShape(10.dp))
                                 .padding(horizontal = 12.dp, vertical = 4.dp),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -214,7 +248,9 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         border = BorderStroke(1.dp, color = Color(195,198,213))
                     ) {
                         Column(
-                            modifier = Modifier.fillMaxWidth().padding(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
@@ -249,7 +285,9 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         border = BorderStroke(1.dp, color = Color(195,198,213))
                     ) {
                         Column(
-                            modifier = Modifier.fillMaxWidth().padding(16.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
