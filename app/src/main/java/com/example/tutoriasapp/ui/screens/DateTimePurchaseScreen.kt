@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.outlined.CalendarToday
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -52,8 +53,6 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
     }
 
     var selectedTime by remember { mutableStateOf<String?>(null) }
-
-
 
     // Estado nativo del calendario de Material 3
     val customSelectableDates = remember {
@@ -127,14 +126,19 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
                 tonalElevation = 8.dp,
                 color = Color(250,248,255)
             ) {
-                Box(
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
                         .padding(horizontal = 24.dp, vertical = 16.dp),
-                    contentAlignment = Alignment.Center
                 ) {
+
+                    if (selectedDateText.isNotEmpty() && selectedTime != null) {
+                        ClassSummaryCard(selectedDateText, selectedTime)
+                        Spacer(Modifier.height(14.dp))
+                    }
+
                     Button(
                         onClick = { onNavigateToSummary() },
+                        enabled = datePickerState.selectedDateMillis != null && selectedTime != null,
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -266,13 +270,10 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
                 }
             }
 
-
-            Spacer(modifier = Modifier.height(22.dp))
-
             // 4. Tu resumen hardcodeado directo para la demo
-            if (selectedDateText.isNotEmpty() && selectedTime != null) {
-                ClassSummaryCard(selectedDateText, selectedTime)
-            }
+//            if (selectedDateText.isNotEmpty() && selectedTime != null) {
+//                ClassSummaryCard(selectedDateText, selectedTime)
+//            }
 
             Spacer(modifier = Modifier.height(16.dp))
         }

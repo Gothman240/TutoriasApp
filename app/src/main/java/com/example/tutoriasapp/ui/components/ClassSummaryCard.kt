@@ -24,19 +24,11 @@ fun ClassSummaryCard(
     selectedTime: String?,
     modifier: Modifier = Modifier,
 ) {
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            /*.padding(16.dp)*/,
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFDDE1FF) // El tono lila/azul suave de "Tu Sesión"
-        ),
-        shape = RoundedCornerShape(12.dp)
-    ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 14.dp),
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Columna de textos explicativos
@@ -45,9 +37,9 @@ fun ClassSummaryCard(
             ) {
                 Text(
                     text = "TU SESIÓN",
-                    style = MaterialTheme.typography.bodyMedium.copy(
+                    style = MaterialTheme.typography.labelSmall.copy(
                         letterSpacing = 1.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.ExtraBold
                     ),
                     color = Color(0xFF434565) // Un azul oscuro sutil para el tag superior
                 )
@@ -56,7 +48,7 @@ fun ClassSummaryCard(
 
                 Text(
                     text = "$selectedDateText • $selectedTime hs",
-                    style = MaterialTheme.typography.bodyMedium.copy(
+                    style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Medium
                     ),
                     color = Color(0xFF191A2C) // Texto principal más oscuro para legibilidad
@@ -72,9 +64,9 @@ fun ClassSummaryCard(
             )
         }
     }
-}
 
-@Preview(showBackground = true, showSystemUi = true)
+
+@Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun ClassSummaryCardPreview() {
     ClassSummaryCard(

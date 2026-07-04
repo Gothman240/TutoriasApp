@@ -172,13 +172,12 @@ fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(12,86,208))
             ) {
-                Text("Continuar", style = MaterialTheme.typography.titleMedium, color = Color.White)
+                Text("Continuar", style = MaterialTheme.typography.titleMedium)
                 Spacer(Modifier.width(8.dp))
                 Icon(
                     painter = painterResource(R.drawable.round_chevron_right_24),
                     contentDescription = null,
                     modifier = Modifier.size(20.dp),
-                    tint = Color.White
                 )
             }
         }
