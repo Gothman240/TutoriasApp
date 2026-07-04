@@ -50,15 +50,6 @@ fun MainScreen(rootNavController: NavHostController) {
                         )
                     )
                 }
-
-                // Foto de perfil circular
-                Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background), // Cambia por tu recurso
-                    contentDescription = "Foto de perfil",
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(CircleShape)
-                )
             }
 
         }

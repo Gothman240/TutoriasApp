@@ -38,14 +38,7 @@ fun TutoriasScreen() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(
-                    brush = Brush.linearGradient(
-                        0.0f to Color(234, 238, 253),
-                        1.0f to Color(250, 249, 255),
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = 0f, y = Float.POSITIVE_INFINITY)
-                    )
-                )
+                .background(Color(0xFFFAFAFA))
         ) {
             Column(
                 modifier = Modifier

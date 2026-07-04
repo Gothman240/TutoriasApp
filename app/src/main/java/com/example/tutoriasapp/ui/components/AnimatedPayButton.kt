@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -63,12 +64,27 @@ fun AnimatedPayButton(onNavigateToSuccess: () -> Unit) {
             // Evitamos que el usuario haga múltiples clics si ya se está animando
             if (!progress.isRunning && progress.value == 0f) {
                 coroutineScope.launch {
-                    // Animación de 800 milisegundos de izquierda a derecha
-                    progress.animateTo(
-                        targetValue = 1f,
-                        animationSpec = tween(durationMillis = 2000)
-                    )
-                    // Una vez que llega a 1f, ejecuta la navegación
+                    val durationNanos = 2000_000_000L // 2 segundos en nanosegundos
+                    val startTime = System.nanoTime()
+
+                    // Este bucle se ejecuta en cada frame del teléfono ignorando el modificador del sistema
+                    while (true) {
+                        withFrameNanos { frameTime ->
+                            val elapsedNanos = System.nanoTime() - startTime
+                            val rawProgress = elapsedNanos.toFloat() / durationNanos
+
+                            // Aseguramos que no pase de 1.0f
+                            val currentProgress = rawProgress.coerceAtMost(1f)
+
+                            // Actualizamos el estado de manera síncrona en el hilo de dibujo
+                            coroutineScope.launch { progress.snapTo(currentProgress) }
+                        }
+
+                        // Si llegamos al 100%, rompemos el ciclo
+                        if (progress.value >= 1f) break
+                    }
+
+                    // Al terminar la animación forzada, navegamos
                     onNavigateToSuccess()
                 }
             }
