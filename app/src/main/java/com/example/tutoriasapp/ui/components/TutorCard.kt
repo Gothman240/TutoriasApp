@@ -55,7 +55,7 @@ fun TutorCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 6.dp),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         border = BorderStroke(1.dp, Color.LightGray.copy(alpha = 0.8f))
@@ -72,7 +72,7 @@ fun TutorCard(
             ) {
                 // Foto del tutor con bordes redondeados
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher_background), // Cambia por tu recurso o AsyncImage de Coil
+                    painter = tutor.image, // Cambia por tu recurso o AsyncImage de Coil
                     contentDescription = "Foto de ${tutor.name}",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
@@ -123,7 +123,6 @@ fun TutorCard(
                     Text(
                         text = tutor.name,
                         style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.SemiBold,
                             color = Color(0xFF0C56D1) // Tu azul característico
                         ),
                         modifier = Modifier.weight(1f)
@@ -132,21 +131,21 @@ fun TutorCard(
                     // Contenedor del Rating (Estrella + Número)
                     Row(
                         modifier = Modifier
-                            .background(Color(0xFFF4F4F4), shape = RoundedCornerShape(12.dp))
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                            .background(Color(218, 227, 254), shape = RoundedCornerShape(10.dp))
+                            .padding(horizontal = 12.dp, vertical = 4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         Icon(
                             imageVector = Icons.Default.Star,
                             contentDescription = null,
-                            tint = Color(0xFF0C56D1), // Tu azul o dorado
+                            tint = Color(76,93,141), // Tu azul o dorado
                             modifier = Modifier.size(14.dp)
                         )
                         Text(
-                            text = tutor.rating.toString(),
-                            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                            color = Color.DarkGray
+                            text = tutor.rating,
+                            style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.ExtraBold),
+                            color = Color(2,27,67)
                         )
                     }
                 }
@@ -173,13 +172,13 @@ fun TutorCard(
                             Text(
                                 text = subject,
                                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp),
-                                color = Color(8,91,204)
+                                color = Color(0,65,152)
                             )
                         }
                     }
                 }
 
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(2.dp))
 
                 // Fila de Precio y Boton Reservar
                 Row(
@@ -193,10 +192,10 @@ fun TutorCard(
                             withStyle(style = SpanStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp,
-                                color = Color(8,91,204)
+                                color = Color(0, 65, 152)
                             )
                             ) {
-                                append("$${String.format("%.2f", tutor.pricePerHour)}")
+                                append("$${String.format("%.3f", tutor.pricePerHour)}")
                             }
                             withStyle(style = SpanStyle(fontSize = 12.sp, color = Color.Gray)) {
                                 append("/hr")

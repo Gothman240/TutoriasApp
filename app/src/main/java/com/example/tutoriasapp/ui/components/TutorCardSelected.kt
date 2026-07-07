@@ -63,7 +63,7 @@ fun TutorCardSelected(
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Text(
-                        text = "Dr. Alejandro Ruiz",
+                        text = "Alejandro Ruiz",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
 

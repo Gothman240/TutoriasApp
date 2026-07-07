@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,7 +45,7 @@ import androidx.compose.ui.unit.sp
 import com.example.tutoriasapp.R
 
 @Composable
-fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "") {
+fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "", image: Painter) {
     Card(
         modifier = modifier
             .fillMaxWidth(),
@@ -62,7 +63,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "") {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_background), // Tu avatar real va acá
+                    painter = image, // Tu avatar real va acá
                     contentDescription = null,
                     modifier = Modifier
                         .size(80.dp)
@@ -140,7 +141,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "") {
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "15 de Octubre",
+                                text = "15 de Julio",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                             )
                         }
@@ -164,7 +165,7 @@ fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "") {
                             )
                             Spacer(modifier = Modifier.width(6.dp))
                             Text(
-                                text = "16:00 - 17:30",
+                                text = "14:00 - 15:00",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
                             )
                         }
@@ -178,5 +179,5 @@ fun TutorCardPurchase(modifier: Modifier = Modifier, monto:String = "") {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun TutorCardPurchasePreview() {
-    TutorCardPurchase()
+    TutorCardPurchase(image = painterResource(R.drawable.ic_launcher_background))
 }

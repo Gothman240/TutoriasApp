@@ -25,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -55,7 +56,7 @@ data class Subject(
 @Composable
 fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
     val initialSubjects = listOf(
-        Subject(1, "Álgebra"),
+        Subject(1, "Cálculo II"),
         Subject(2, "Análisis Matemático"),
         Subject(3, "Física I"),
         Subject(4, "Química General"),
@@ -69,6 +70,42 @@ fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
     var subjectsList by remember { mutableStateOf(initialSubjects) }
     var searchQuery by remember { mutableStateOf("") }
     val isButtonEnabled = searchQuery.isNotEmpty() || subjectsList.any { it.isSelected }
+
+    Scaffold(bottomBar = {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .drawWithContent {
+                    drawContent()
+                    drawLine(
+                        color = Color.LightGray.copy(alpha = 0.5f),
+                        start = Offset(x = 0f, y = 0f),
+                        end = Offset(x = size.width, y = 0f),
+                        strokeWidth = 1.dp.toPx()
+                    )
+                }, color = Color.White
+        ) {
+            Button(
+                onClick = { onSelectionComplete() },
+                enabled = isButtonEnabled,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 18.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(12,86,208))
+            ) {
+                Text("Continuar", style = MaterialTheme.typography.titleMedium)
+                Spacer(Modifier.width(8.dp))
+                Icon(
+                    painter = painterResource(R.drawable.round_chevron_right_24),
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                )
+            }
+        }
+    }) { paddingValues ->
+
+
 
     Box(
         modifier = Modifier
@@ -85,6 +122,7 @@ fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
         Column(Modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
+            .padding(paddingValues)
             .padding(horizontal = 20.dp, vertical = 36.dp)) {
             Spacer(Modifier.height(46.dp))
             Text("¿Con qué materias necesitas ayuda?", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
@@ -146,44 +184,14 @@ fun SubjectSelectorScreen(onSelectionComplete: () -> Unit) {
                         }
                     )
                 }
-                Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(10.dp))
             }
         }
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .drawWithContent {
-                    drawContent()
-                    drawLine(
-                        color = Color.LightGray.copy(alpha = 0.5f),
-                        start = Offset(x = 0f, y = 0f),
-                        end = Offset(x = size.width, y = 0f),
-                        strokeWidth = 1.dp.toPx()
-                    )
-                }, color = Color.White
-        ) {
-            Button(
-                onClick = { onSelectionComplete() },
-                enabled = isButtonEnabled,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 18.dp),
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(12,86,208))
-            ) {
-                Text("Continuar", style = MaterialTheme.typography.titleMedium)
-                Spacer(Modifier.width(8.dp))
-                Icon(
-                    painter = painterResource(R.drawable.round_chevron_right_24),
-                    contentDescription = null,
-                    modifier = Modifier.size(20.dp),
-                )
-            }
-        }
+
     }
 
 }
+    }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

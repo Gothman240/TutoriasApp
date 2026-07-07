@@ -86,7 +86,7 @@ fun TutoriasScreen() {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Image(
-                                painter = painterResource(R.drawable.ic_launcher_background),
+                                painter = painterResource(R.drawable.alejandro),
                                 contentDescription = null,
                                 modifier = Modifier
                                     .size(74.dp)
@@ -129,7 +129,7 @@ fun TutoriasScreen() {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         Icon(Icons.Default.CalendarMonth, null, tint = Color(41,36,46), modifier = Modifier.size(18.dp))
                                         Spacer(modifier = Modifier.width(6.dp))
-                                        Text("15 de Octubre", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
+                                        Text("15 de Julio", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
                                     }
                                 }
                                 Column() {
@@ -141,7 +141,7 @@ fun TutoriasScreen() {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
                                         Icon(Icons.Default.Schedule, null, tint = Color(41,36,46), modifier = Modifier.size(18.dp))
                                         Spacer(modifier = Modifier.width(6.dp))
-                                        Text("16:00 - 17:00", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
+                                        Text("14:00 - 15:00 hs", style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold))
                                     }
                                 }
                             }
@@ -189,8 +189,8 @@ fun TutoriasScreen() {
                 Spacer(modifier = Modifier.height(10.dp))
 
                 val otrasReservas = listOf(
-                    Pair("Ricardo Sosa", "Hidrología Aplicada" to "18 Oct \n10:00 AM"),
-                    Pair("Ana García", "Geotécnica" to "22 Oct \n15:30 PM")
+                    Pair("Elena Martinez", "Química General" to "18 Jul \n10:00 hs"),
+                    Pair("Elena Martinez", "Diseño de Sistemas" to "22 Jul \n15:00 hs")
                 )
 
                 otrasReservas.forEach { (tutor, datos) ->
@@ -208,7 +208,7 @@ fun TutoriasScreen() {
                             ) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
-                                        painter = painterResource(R.drawable.ic_launcher_background),
+                                        painter = painterResource(R.drawable.elena),
                                         contentDescription = null,
                                         modifier = Modifier.size(44.dp).clip(CircleShape)
                                     )
@@ -289,7 +289,7 @@ fun TutoriasScreen() {
                             Spacer(modifier = Modifier.width(12.dp))
                             Column {
                                 Text("Elena Martínez", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
-                                Text("Ingeniería Legal", fontWeight = FontWeight.SemiBold,
+                                Text("Física I", fontWeight = FontWeight.SemiBold,
                                     color = Color.Gray,
                                     style = MaterialTheme.typography.bodySmall)
                             }

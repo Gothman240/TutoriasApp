@@ -44,6 +44,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .windowInsetsPadding(WindowInsets.statusBars)
                     .padding(start = 20.dp, end = 20.dp, top = 24.dp, bottom = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -103,8 +104,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
             ) {
 
                 // 1. TU COMPONENTE ORIGINAL (Contiene Tutor + Fecha + Hora en tu diseño)
-                TutorCardPurchase(monto = "$4,500")
-
+                TutorCardPurchase(monto = "$4,500", image = painterResource(R.drawable.alejandro))
                 Spacer(modifier = Modifier.height(36.dp))
 
                 // 2. SECCIÓN: MÉTODO DE PAGO

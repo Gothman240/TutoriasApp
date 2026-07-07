@@ -26,7 +26,7 @@ fun FlowRowScope.TimeButton(
     // Determinar los colores según el estado
     val backgroundColor = when {
         !slot.isAvailable -> Color(0xFFF5F5F7) // Gris claro
-        isSelected -> Color(0xFF0047A3)       // Azul oscuro
+        isSelected -> Color(0,61,155)       // Azul oscuro
         else -> Color.White
     }
 

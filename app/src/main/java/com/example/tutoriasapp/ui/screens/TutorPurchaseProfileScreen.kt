@@ -21,14 +21,17 @@ import com.example.tutoriasapp.R
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.tutoriasapp.ui.components.MateriaChip
 import com.example.tutoriasapp.ui.components.ReviewCard
 import com.example.tutoriasapp.ui.components.SubjectChip
 import org.jetbrains.annotations.ApiStatus
@@ -38,6 +41,7 @@ import org.jetbrains.annotations.ApiStatus
 fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
     // --- ESTADO LOCAL PARA LA CHANCHADA INTERACTIVA ---
     var horasContratadas by remember { mutableStateOf(1) }
+    var materiaSeleccionada by remember { mutableStateOf("Cálculo II") }
     val precioBase = 4500
     val precioTotal = precioBase * horasContratadas
 
@@ -46,6 +50,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .windowInsetsPadding(WindowInsets.statusBars)
                     .padding(start = 20.dp, end = 20.dp, top = 24.dp, bottom = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -96,7 +101,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                     ) {
                         Column {
                             Text(
-                                text = "Precio total ($horasContratadas ${if (horasContratadas == 1) "hora" else "horas"})",
+                                text = "Total · $horasContratadas ${if (horasContratadas == 1) "hora" else "horas"} de $materiaSeleccionada",
                                 style = MaterialTheme.typography.labelSmall,
                                 //color = Color.Gray
                             )
@@ -179,11 +184,12 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.ic_launcher_background),
+                        painter = painterResource(R.drawable.alejandro),
                         contentDescription = "Foto de perfil",
                         modifier = Modifier
                             .size(110.dp)
-                            .border(3.dp, Color(0xFF0C56D1).copy(alpha = 0.2f), shape = CircleShape)
+                            .clip(CircleShape),
+                        contentScale = ContentScale.Crop
                     )
                 }
 
@@ -215,7 +221,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             Icon(
                                 imageVector = Icons.Default.Star,
                                 contentDescription = null,
-                                tint = Color(2,27,67), // Tu azul o dorado
+                                tint = Color(76,93,141), // Tu azul o dorado
                                 modifier = Modifier.size(14.dp)
                             )
                             Text(
@@ -270,7 +276,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "Ingeniería Civil",
+                                text = "Ing. en Informática",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
                                 color = Color(0,65,152),
                                 textAlign = TextAlign.Center
@@ -299,7 +305,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             )
                             Spacer(modifier = Modifier.height(6.dp))
                             Text(
-                                text = "Experiencia",
+                                text = "Clases dadas",
                                 style = MaterialTheme.typography.labelSmall,
                                 fontWeight = FontWeight.ExtraBold,
                                 color = Color.Gray,
@@ -307,7 +313,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "5+ Años",
+                                text = "45 tutorías",
                                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
                                 color = Color(0,65,152),
                                 textAlign = TextAlign.Center
@@ -319,7 +325,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // Sección Materias
-                Text("Materias", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
+                Text("Elegí tu materia", style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Box(modifier = Modifier.fillMaxWidth()) {
@@ -328,13 +334,18 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        SubjectChip(name = "Cálculo II", isSelected = true, onSelectionChanged = {})
-                        SubjectChip(name = "Probabilidad y Estadística", isSelected = false, onSelectionChanged = {})
-                        SubjectChip(name = "Álgebra Lineal", isSelected = false, onSelectionChanged = {})
-                        SubjectChip(name = "Cálculo Númerico", isSelected = false, onSelectionChanged = {})
+                        val materias = listOf("Cálculo II", "Matemática Discreta", "Probabilidad y Estadística", "Base de Datos")
+
+                        materias.forEach { materia ->
+                            MateriaChip(
+                                name = materia,
+                                isSelected = materiaSeleccionada == materia,
+                                onSelectedChange = { selected ->
+                                    if (selected) materiaSeleccionada = materia
+                                }
+                            )
+                        }
                     }
-
-
                 }
 
                 Spacer(modifier = Modifier.height(18.dp))

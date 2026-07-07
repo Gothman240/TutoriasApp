@@ -26,7 +26,7 @@ import com.example.tutoriasapp.ui.components.TutorCardPurchase
 import com.example.tutoriasapp.ui.theme.TutoriasAppTheme
 
 @Composable
-fun SuccessPurchaseScreen() {
+fun SuccessPurchaseScreen(onNavigateToMainScreen: () -> Unit) {
     Scaffold(
         bottomBar = {
             // --- BOTÓN INFERIOR: IR A TUTORÍAS ---
@@ -41,7 +41,7 @@ fun SuccessPurchaseScreen() {
                         .padding(horizontal = 20.dp, vertical = 16.dp)
                 ) {
                     Button(
-                        onClick = { /* Navegar a la sección de tutorías programadas */ },
+                        onClick = { onNavigateToMainScreen() },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -56,7 +56,7 @@ fun SuccessPurchaseScreen() {
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = "Ir a tutorías", // Tu cambio solicitado
+                                text = "Volver al inicio", // Tu cambio solicitado
                                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
                             )
                             Spacer(modifier = Modifier.width(8.dp))
@@ -79,7 +79,7 @@ fun SuccessPurchaseScreen() {
                 .padding(innerPadding)
                 .background(
                     brush = Brush.linearGradient(
-                        0.0f to Color(250,249,255),
+                        0.0f to Color(250, 249, 255),
                         1.0f to Color(250, 249, 255),
                         start = Offset(x = 0f, y = 0f),
                         end = Offset(x = 0f, y = Float.POSITIVE_INFINITY)
@@ -134,7 +134,7 @@ fun SuccessPurchaseScreen() {
                 Spacer(modifier = Modifier.weight(1f))
 
                 // 3. TU COMPONENTE ORIGINAL (Reutiliza tus tarjetas, fecha y hora de forma compacta)
-                TutorCardPurchase()
+                TutorCardPurchase(monto = "$5,000", image = painterResource(R.drawable.alejandro))
 
                 Spacer(modifier = Modifier.weight(1f))
 
@@ -148,15 +148,15 @@ fun SuccessPurchaseScreen() {
                     color = Color.Gray
                 )
 
-                Spacer(modifier = Modifier.height(18.dp))
+                Spacer(modifier = Modifier.height(26.dp))
 
                 OutlinedButton(
-                    onClick = { /* Simular abrir WhatsApp web/app */ },
+                    onClick = {},
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp),
                     shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF0C56D1)), // Verde WhatsApp
+                    colors = ButtonDefaults.outlinedButtonColors(containerColor = Color(255, 255, 255), contentColor = Color(0xFF0C56D1)), // Verde WhatsApp
                     border = ButtonDefaults.outlinedButtonBorder.copy(width = 1.dp)
                 ) {
                     Row(
@@ -189,6 +189,6 @@ fun SuccessPurchaseScreen() {
 @Composable
 fun SuccessPurchaseScreenPreview() {
     TutoriasAppTheme {
-        SuccessPurchaseScreen()
+        SuccessPurchaseScreen {}
     }
 }

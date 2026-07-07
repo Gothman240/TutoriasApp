@@ -93,6 +93,7 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .windowInsetsPadding(WindowInsets.statusBars)
                     .padding(start = 20.dp, end = 20.dp, top = 24.dp, bottom = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -179,9 +180,9 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
         ) {
 
             // 1. Cabecera (Tu componente visual previo)
-            TutorCardSelected()
-
-            Spacer(modifier = Modifier.height(28.dp))
+//            TutorCardSelected()
+//
+//            Spacer(modifier = Modifier.height(28.dp))
 
             // Textos informativos
             Text(
@@ -189,7 +190,7 @@ fun DateTimePurchaseScreen(onNavigateToSummary: () -> Unit) {
                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
                 color = Color(0xFF1D1B20)
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(18.dp))
             Text(
                 text = "Elige el momento que mejor se adapte a tu horario académico.",
                 style = MaterialTheme.typography.bodyMedium,

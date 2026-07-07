@@ -8,6 +8,7 @@ import com.example.tutoriasapp.ui.screens.DateTimePurchaseScreen
 import com.example.tutoriasapp.ui.screens.LoginScreen
 import com.example.tutoriasapp.ui.screens.MainScreen
 import com.example.tutoriasapp.ui.screens.PurchaseSummaryScreen
+import com.example.tutoriasapp.ui.screens.SelectMajorScreen
 import com.example.tutoriasapp.ui.screens.SelectRoleScreen
 import com.example.tutoriasapp.ui.screens.SelectUniversity
 import com.example.tutoriasapp.ui.screens.SubjectSelectorScreen
@@ -31,7 +32,12 @@ fun NavigationWrap() {
         }
         composable<SelectUniversity> {
             SelectUniversity(
-                navigateSelectSubjectScreen = { navController.navigate((SelectSubject)) }
+                navigateSelectMajorScreen = { navController.navigate((SelectMajor)) }
+            )
+        }
+        composable<SelectMajor> {
+            SelectMajorScreen(
+                navigateSelectSubjectScreen = { navController.navigate((SelectSubject))}
             )
         }
         composable<SelectSubject> {
@@ -54,7 +60,7 @@ fun NavigationWrap() {
             )
         }
         composable("success_purchase") {
-            SuccessPurchaseScreen()
+            SuccessPurchaseScreen(onNavigateToMainScreen = { navController.navigate(MainScreen) })
         }
     }
 }

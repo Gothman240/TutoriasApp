@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -28,6 +29,7 @@ import com.example.tutoriasapp.R
 
 @Composable
 fun UniversityCard(
+    icon: Painter,
     name: String,
     location: String,
     onClick: () -> Unit
@@ -61,7 +63,7 @@ fun UniversityCard(
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.study),
+                    painter = icon,
                     contentDescription = null,
                     modifier = Modifier.size(28.dp),
                     tint = Color(0xFF0C56D1)

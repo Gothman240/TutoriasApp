@@ -11,4 +11,6 @@ object SelectRole
 @Serializable
 object SelectUniversity
 @Serializable
+object SelectMajor
+@Serializable
 object SelectSubject

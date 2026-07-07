@@ -21,8 +21,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,7 +45,7 @@ import com.example.tutoriasapp.R
 import com.example.tutoriasapp.ui.components.UniversityCard
 
 @Composable
-fun SelectUniversity(navigateSelectMajorScreen: () -> Unit) {
+fun SelectMajorScreen(navigateSelectSubjectScreen: () -> Unit) {
     var searchQuery by remember { mutableStateOf("") }
     Box(
         modifier = Modifier
@@ -62,12 +64,12 @@ fun SelectUniversity(navigateSelectMajorScreen: () -> Unit) {
             .padding(horizontal = 20.dp, vertical = 36.dp)
             .verticalScroll(rememberScrollState())) {
             Spacer(Modifier.height(46.dp))
-            Text("Cuentanos sobre tu universidad", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
-            Spacer(modifier = Modifier.height(16.dp))
-            Text("Esto nos ayuda a conectarte con tutores de tu misma institución.",
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium
-            )
+            Text("¿Qué carrera estás cursando?", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center)
+//            Spacer(modifier = Modifier.height(16.dp))
+//            Text("Esto nos ayuda a filtrar las materias de tu plan de estudios.",
+//                textAlign = TextAlign.Center,
+//                style = MaterialTheme.typography.bodyMedium
+//            )
             Spacer(Modifier.height(16.dp))
             OutlinedTextField(
                 value = searchQuery,
@@ -77,7 +79,7 @@ fun SelectUniversity(navigateSelectMajorScreen: () -> Unit) {
                     .padding(vertical = 18.dp),
                 placeholder = {
                     Text(
-                        text = "Buscar tu universidad...",
+                        text = "Buscar tu carrera...",
                         color = Color.Gray,
                         style = MaterialTheme.typography.bodyMedium
                     )
@@ -93,40 +95,34 @@ fun SelectUniversity(navigateSelectMajorScreen: () -> Unit) {
                 singleLine = true,
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color(0xFF0C56D1),
-                    unfocusedBorderColor = Color.LightGray,  
+                    unfocusedBorderColor = Color.LightGray,
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White
                 ),
             )
             Spacer(Modifier.height(8.dp))
-            Text("Sugerido cerca de ti", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
+            Text("Populares en UNLaM", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
             Spacer(Modifier.height(16.dp))
             UniversityCard(
-                name = "Universidad Nacional de La Matanza",
-                location = "San Justo, Buenos Aires",
-                icon = painterResource(R.drawable.study)
-            ) { navigateSelectMajorScreen() }
+                name = "Ingeniería en Informática",
+                location = "Sistemas y Desarrollo de Software",
+                icon = painterResource(R.drawable.code)
+            ) { navigateSelectSubjectScreen() }
             UniversityCard(
-                name = "Universidad de Buenos Aires",
-                location = "CABA, Buenos Aires",
-                icon = painterResource(R.drawable.study)
-            ) { navigateSelectMajorScreen() }
+                name = "Licenciatura en Administración",
+                location = "Gestión y Estrategia Empresarial",
+                icon = painterResource(R.drawable.business)
+            ) { navigateSelectSubjectScreen() }
             UniversityCard(
-                name = "Universidad Tecnológica Nacional (UTN)",
-                location = "Avellaneda, Buenos Aires",
-                icon = painterResource(R.drawable.study)
-            ) { navigateSelectMajorScreen() }
+                name = "Psicología",
+                location = "Procesos Cognitivos y Salud Mental",
+                icon = painterResource(R.drawable.cognition)
+            ) { navigateSelectSubjectScreen() }
             UniversityCard(
-                name = "Universidad Nacional de Quilmes (UNQ)",
-                location = "Quilmes, Buenos Aires",
-                icon = painterResource(R.drawable.study)
-            ) { navigateSelectMajorScreen() }
-            UniversityCard(
-                name = "Universidad Nacional de General San Martín (UNSAM)",
-                location = "San Martín, Buenos Aires",
-                icon = painterResource(R.drawable.study)
-            ) { navigateSelectMajorScreen() }
-            Spacer(modifier = Modifier.height(90.dp))
+                name = "Medicina",
+                location = "Anatomía y Ciencias de la Salud",
+                icon = painterResource(R.drawable.health)
+            ) { navigateSelectSubjectScreen() }
         }
         Surface(
             modifier = Modifier
@@ -143,7 +139,7 @@ fun SelectUniversity(navigateSelectMajorScreen: () -> Unit) {
                 }, color = Color.White
         ) {
             Button(
-                onClick = { navigateSelectMajorScreen() },
+                onClick = { navigateSelectSubjectScreen() },
                 enabled = searchQuery.isNotEmpty(),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -165,6 +161,6 @@ fun SelectUniversity(navigateSelectMajorScreen: () -> Unit) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun SelectUniversityPreview(){
-    SelectUniversity(navigateSelectMajorScreen =  {})
+fun SelectMajorScreenPreview(){
+    SelectMajorScreen(navigateSelectSubjectScreen =  {})
 }
