@@ -104,7 +104,7 @@ fun PurchaseSummaryScreen(onNavigateToSuccess: () -> Unit) {
             ) {
 
                 // 1. TU COMPONENTE ORIGINAL (Contiene Tutor + Fecha + Hora en tu diseño)
-                TutorCardPurchase(monto = "$4,500", image = painterResource(R.drawable.alejandro))
+                TutorCardPurchase(monto = "$4.500", image = painterResource(R.drawable.alejandro))
                 Spacer(modifier = Modifier.height(36.dp))
 
                 // 2. SECCIÓN: MÉTODO DE PAGO

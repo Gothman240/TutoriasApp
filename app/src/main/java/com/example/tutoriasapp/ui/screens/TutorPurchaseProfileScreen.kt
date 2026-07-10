@@ -106,7 +106,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                                 //color = Color.Gray
                             )
                             Text(
-                                text = "$$precioTotal", // Se actualiza automáticamente al multiplicar
+                                text = "$${String.format("%,d", precioTotal).replace(',', '.')}", // Se actualiza automáticamente al multiplicar
                                 style = MaterialTheme.typography.titleLarge.copy(
                                     fontWeight = FontWeight.Bold,
                                     color = Color(0xFF1D1B20)
@@ -334,7 +334,7 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        val materias = listOf("Cálculo II", "Matemática Discreta", "Probabilidad y Estadística", "Base de Datos")
+                        val materias = listOf("Cálculo II", "Física I", "Estadística Aplicada", "Base de Datos")
 
                         materias.forEach { materia ->
                             MateriaChip(
@@ -366,10 +366,10 @@ fun TutorProfileScreen(onNavigateToDateTime: () -> Unit) {
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                ReviewCard(nombre = "María Chile", dias = "Hace 2 días",
+                ReviewCard(nombre = "María Chile", letra = "M" ,dias = "Hace 2 días",
                     texto = "Alejandro explica de maravilla. Las clases de Cálculo se me hacían" +
                         " imposibles y con él todo ha cobrado sentido. ¡Muy recomendado!")
-                ReviewCard(nombre = "Jorge Andrada", dias = "Hace 1 semana",
+                ReviewCard(nombre = "Jorge Andrada", letra = "J", dias = "Hace 1 semana",
                     texto = "Puntual y muy preparado. Trae sus propios ejercicios " +
                         "complementarios que ayudan mucho a entender la teoría.")
             }

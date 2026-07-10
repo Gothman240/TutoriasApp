@@ -134,7 +134,7 @@ fun SuccessPurchaseScreen(onNavigateToMainScreen: () -> Unit) {
                 Spacer(modifier = Modifier.weight(1f))
 
                 // 3. TU COMPONENTE ORIGINAL (Reutiliza tus tarjetas, fecha y hora de forma compacta)
-                TutorCardPurchase(monto = "$5,000", image = painterResource(R.drawable.alejandro))
+                TutorCardPurchase(monto = "$5.000", image = painterResource(R.drawable.alejandro))
 
                 Spacer(modifier = Modifier.weight(1f))
 

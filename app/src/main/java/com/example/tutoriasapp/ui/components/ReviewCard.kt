@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 fun ReviewCard(
     modifier: Modifier = Modifier,
     nombre: String,
+    letra: String,
     texto: String,
     dias: String
 ) {
@@ -57,7 +58,7 @@ fun ReviewCard(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "M",
+                        text = letra,
                         style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                         color = Color(0xFF601410)
                     )
@@ -115,6 +116,7 @@ fun ReviewCardPreview() {
     ReviewCard(
         modifier = TODO(),
         nombre = "Maria Sanz",
+        letra = "J",
         texto = "Alejandro explica de maravilla. Las clases de Cálculo se me hacían imposibles y con él todo ha cobrado sentido. ¡Muy recomendado!",
         dias = "Hace 2 días"
     )

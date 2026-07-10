@@ -189,11 +189,11 @@ fun TutoriasScreen() {
                 Spacer(modifier = Modifier.height(10.dp))
 
                 val otrasReservas = listOf(
-                    Pair("Elena Martinez", "Química General" to "18 Jul \n10:00 hs"),
-                    Pair("Elena Martinez", "Diseño de Sistemas" to "22 Jul \n15:00 hs")
+                    Triple("Lucía Fernandez", "Química General" to "18 Jul \n10:00 hs", painterResource(R.drawable.lucia)),
+                    Triple("Martín Gómez", "Diseño de Sistemas" to "22 Jul \n15:00 hs", painterResource(R.drawable.martin))
                 )
 
-                otrasReservas.forEach { (tutor, datos) ->
+                otrasReservas.forEach { (tutor, datos, image) ->
                     Card(
                         modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
                         colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -208,7 +208,7 @@ fun TutoriasScreen() {
                             ) {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Image(
-                                        painter = painterResource(R.drawable.elena),
+                                        painter = image,
                                         contentDescription = null,
                                         modifier = Modifier.size(44.dp).clip(CircleShape)
                                     )

@@ -36,7 +36,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 
 sealed class BottomBarTab(val route: String, val title: String, val icon: ImageVector) {
     object Home : BottomBarTab("home_tab", "Inicio", Icons.Default.Home)
-    object Classes : BottomBarTab("classes_tab", "Mis Clases", Icons.Default.DateRange)
+    object Classes : BottomBarTab("classes_tab", "Mis Tutorías", Icons.Default.DateRange)
     object Profile : BottomBarTab("profile_tab", "Perfil", Icons.Default.Person)
 }
 
